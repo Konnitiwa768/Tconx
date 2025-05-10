@@ -13,6 +13,8 @@ public class ModMaterialIntegration {
         registerMaterial(ModMaterials.VIBERIUM, 0x8B0000, ModStats.VIBERIUM_HEAD, ModStats.VIBERIUM_HANDLE, ModStats.VIBERIUM_EXTRA);
         registerMaterial(ModMaterials.NEHILIUM, 0x9370DB, ModStats.NEHILIUM_HEAD, ModStats.NEHILIUM_HANDLE, ModStats.NEHILIUM_EXTRA);
     }
+    ModifierRegistry.register(new Identifier("tconx", "viberium_modifier"), new ViberiumModifier());
+    ModifierRegistry.register(new Identifier("tconx", "nehilium_modifier"), new NehiliumModifier());
 
     private static void registerMaterial(MaterialId id, int color,
                                          HeadMaterialStats head, HandleMaterialStats handle, ExtraMaterialStats extra) {
