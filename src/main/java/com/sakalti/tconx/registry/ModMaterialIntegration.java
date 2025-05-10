@@ -1,6 +1,7 @@
 package com.sakalti.tconx.registry;
 
 import com.sakalti.tconx.TconXMod;
+import com.sakalti.tconx.modifier.*
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import slimeknights.tconstruct.library.materials.*;
