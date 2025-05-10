@@ -1,0 +1,2 @@
+# Tconx
+https://chatgpt.com
