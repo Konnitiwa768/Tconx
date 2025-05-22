@@ -12,7 +12,7 @@ public class ModStats {
     public static final HandleMaterialStats NEHILIUM_HANDLE = new HandleMaterialStats(1.75f, 0);
     public static final ExtraMaterialStats NEHILIUM_EXTRA = new ExtraMaterialStats(1.75f);
         // 緑色Keriumのヘッドパーツ (耐久, 掘る速度, harvestレベル, 基本攻撃力)
-    HeadMaterialStats keriumGreenHead = new HeadMaterialStats(
+    HeadMaterialStats keriumHead = new HeadMaterialStats(
         742,
         7.5f,
         4,
@@ -20,12 +20,12 @@ public class ModStats {
     );
 
     // ハンドルパーツ (倍率, 追加耐久)
-    HandleMaterialStats keriumGreenHandle = new HandleMaterialStats(
+    HandleMaterialStats KeriumHandle = new HandleMaterialStats(
         1.88f,
     );
 
     // エクストラパーツ (倍率)
-    ExtraMaterialStats keriumGreenExtra = new ExtraMaterialStats(
+    ExtraMaterialStats keriumExtra = new ExtraMaterialStats(
         1.45f
     );
 }
