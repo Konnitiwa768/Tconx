@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'net.minecraftforge.gradle' version '5.1.+'
+}
+
+group = 'com.sakalti.tconx'
+version = '1.0.0'
+archivesBaseName = 'tconx'
+
+java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+
+minecraft {
+    mappings channel: 'official', version: '1.19.2'
+    runs {
+        client {
+            workingDirectory project.file('run')
+            mods {
+                tconx {
+                    source sourceSets.main
+                }
+            }
+        }
+        server {
+            workingDirectory project.file('run')
+            mods {
+                tconx {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.19.2-43.2.0'
+}
+
+jar {
+    manifest {
+        attributes([
+            "Specification-Title": "tconx",
+            "Specification-Vendor": "お方",
+            "Specification-Version": "1.0.0",
+            "Implementation-Title": "TConX",
+            "Implementation-Version": archiveVersion,
+            "Implementation-Vendor": "お方",
+        ])
+    }
+}
