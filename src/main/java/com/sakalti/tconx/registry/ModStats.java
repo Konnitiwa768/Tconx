@@ -28,4 +28,7 @@ public class ModStats {
     ExtraMaterialStats keriumExtra = new ExtraMaterialStats(
         1.45f
     );
+    public static final HeadMaterialStats URI_HEAD = new HeadMaterialStats(1450, 9.5f, 7, 4f);
+    public static final HandleMaterialStats URI_HANDLE = new HandleMaterialStats(1.75f, 0);
+    public static final ExtraMaterialStats URI_EXTRA = new ExtraMaterialStats(1.75f);
 }
