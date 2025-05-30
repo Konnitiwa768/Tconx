@@ -1,0 +1,62 @@
+name: Build and Upload Mod
+
+on:
+  push:
+    branches:
+      - 1.21
+    tags:
+      - '*'  # タグpushを検知
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Copy built JAR to versioned folder
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          echo "GITHUB_REF=${GITHUB_REF}"
+          VERSION="${GITHUB_REF#refs/tags/}"
+          mkdir -p jar
+          # ビルドされたJARファイル名を確認
+          echo "Built JAR files:"
+          ls -l build/libs
+          
+          # 最初に見つかったJARファイルをコピーしてリネームする
+          JAR_FILE=$(find build/libs -type f -name "*.jar" | head -n 1)
+          if [ -z "$JAR_FILE" ]; then
+            echo "No JAR file found!"
+            exit 1
+          fi
+          echo "Found JAR: $JAR_FILE"
+          cp "$JAR_FILE" "jar/${VERSION}.jar"
+
+      - name: List files to upload
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          echo "Files in jar/:"
+          ls -l jar
+
+      - name: Upload JAR to GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          files: jar/${{ github.ref_name }}.jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
