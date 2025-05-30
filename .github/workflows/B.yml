@@ -1,0 +1,38 @@
+name: Sync Modpack Except Src
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sync_modpack:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      # 1. 作業ディレクトリをクリーンに
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+
+      # 2. Modpackの最新mainをダウンロード
+      - name: Download Modpack repo
+        run: |
+          git clone --depth 1 https://github.com/Webos725/Modpack.git modpack
+
+      # 3. srcディレクトリを除外してコピー
+      - name: Copy files except src
+        run: |
+          rsync -av --exclude='src' --exclude='.git' modpack/ ./modpack_nosrc/
+
+      # 4. 必要なファイルを自分のリポジトリに上書き
+      - name: Copy files to repo
+        run: |
+          cp -r ./modpack_nosrc/* .
+
+      # 5. 変更をコミット&プッシュ
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Sync files from Webos725/Modpack except src" || echo "No changes to commit"
+          git push origin HEAD:${GITHUB_REF##*/}
