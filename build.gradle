@@ -1,148 +1,17 @@
 plugins {
-	id 'java-library'
-	id 'eclipse'
-	id 'idea'
-	id 'maven-publish'
-	id 'net.neoforged.moddev' version '1.0.1'
-}
-
-def secrets = new Properties()
-def secretsFile = file('secrets.properties')
-if (secretsFile.exists()) {
-    secretsFile.withInputStream {
-        stream -> secrets.load(stream)
-    }
-
-    fileTree("secrets").matching {
-        include "**/*.properties"
-    }.each {
-        File file ->
-            file.withInputStream {
-                stream -> secrets.load(stream)
-            }
-    }
-}
-
-idea {
-	module {
-		downloadJavadoc = true
-		downloadSources = true
-	}
-}
-
-version = project.undergarden_version
-group = 'quek.undergarden'
-base {
-    archivesName = 'The_Undergarden-'+project.minecraft_version
-}
-
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
-compileJava.options.compilerArgs << "-Xlint:all,-classfile,-processing,-deprecation,-this-escape" << "-Werror"
-
-neoForge {
-	version = project.neo_version
-	validateAccessTransformers = true
-
-	runs {
-		configureEach {
-			gameDirectory = project.file('run')
-			systemProperty 'forge.logging.console.level', 'debug'
-			logLevel = org.slf4j.event.Level.DEBUG
-		}
-
-		client {
-			client()
-			systemProperty 'forge.enabledGameTestNamespaces', mod_id
-			programArguments.addAll '--username', secrets.getProperty("username") ?: 'Dev', secrets.getProperty("uuid") ? '--uuid' : '', secrets.getProperty("uuid") ?: ''
-		}
-
-		server {
-			server()
-			systemProperty 'forge.enabledGameTestNamespaces', mod_id
-			programArgument '--nogui'
-		}
-
-		data {
-			data()
-			programArguments.addAll '--mod', mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
-		}
-	}
-
-	mods {
-		undergarden {
-			sourceSet this.sourceSets.main
-		}
-	}
-}
-
-sourceSets.main.resources { srcDir 'src/generated/resources' }
-
-repositories {
-	maven {
-		// location of the maven that hosts JEI files since January 2023
-		name = "Jared's maven"
-		url = "https://maven.blamejared.com/"
-	}
-	maven {
-		// location of a maven mirror for JEI files, as a fallback
-		name = "ModMaven"
-		url = "https://modmaven.dev"
-	}
-	maven {
-		name = "Curse Maven"
-		url "https://cursemaven.com"
-	}
-}
-
-dependencies {
-	// compile against the JEI API but do not include it at runtime
-	compileOnly("mezz.jei:jei-1.21-common-api:${jei_version}")
-	compileOnly("mezz.jei:jei-1.21-neoforge-api:${jei_version}")
-	// at runtime, use the full JEI jar for NeoForge
-	runtimeOnly("mezz.jei:jei-1.21-neoforge:${jei_version}")
-
-    implementation "curse.maven:jade-324717:${project.jade_version}"
-    implementation "curse.maven:better-advancements-272515:${project.better_advancements_version}"
-}
-
-tasks.named('jar', Jar).configure {
-	manifest {
-		attributes([
-				"Specification-Title"     : "undergarden",
-				"Specification-Vendor"    : "quek",
-				"Specification-Version"   : "1",
-				"Implementation-Title"    : project.name,
-				"Implementation-Version"  : project.jar.archiveVersion,
-				"Implementation-Vendor"   : "quek",
-				"Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-		])
-	}
-}
-
-publishing {
-	publications {
-		register('mavenJava', MavenPublication) {
-			from components.java
-		}
-	}
-	repositories {
-		maven {
-			url "file://${project.projectDir}/repo"
-		}
-	}
-}
-
-tasks.withType(JavaCompile).configureEach {
-	options.plugins {
+    id 'net.minecraftforge.gradle' version '6.0.24'
     id 'java'
-    id 'net.minecraftforge.gradle' version '6.0.24' // ForgeGradle 6系（1.20.1対応）
 }
 
 group = 'com.konnitiwa768.tconx'
 archivesBaseName = 'tconx'
 version = '1.0.0'
-sourceCompatibility = '17'
-targetCompatibility = '17'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
 
 minecraft {
     mappings channel: 'official', version: '1.20.1'
@@ -158,29 +27,25 @@ minecraft {
 
 repositories {
     maven {
-        // Tinkers' ConstructのMavenリポジトリ
         name = 'blamejared'
         url = 'https://maven.blamejared.com/'
     }
 }
 
 dependencies {
-    // Forge本体
     minecraft 'net.minecraftforge:forge:1.20.1-47.1.0'
-
-    // Tinkers' Construct API
-    compileOnly fg.deobf("slimeknights.tconstruct:TConstruct-1.20.1:3.7.5.312") // バージョンは必要に応じて変更
+    compileOnly fg.deobf("slimeknights.tconstruct:TConstruct-1.20.1:3.7.5.312")
 }
 
 jar {
     manifest {
-        attributes([
-            "Specification-Title": "tconx",
-            "Specification-Vendor": "konnitiwa768",
-            "Specification-Version": "1.0.0",
-            "Implementation-Title": project.name,
-            "Implementation-Version": project.version,
-            "Implementation-Vendor": "konnitiwa768"
-        ])
+        attributes(
+            'Specification-Title': 'tconx',
+            'Specification-Vendor': 'konnitiwa768',
+            'Specification-Version': '1.0.0',
+            'Implementation-Title': project.name,
+            'Implementation-Version': project.version,
+            'Implementation-Vendor': 'konnitiwa768'
+        )
     }
 }
