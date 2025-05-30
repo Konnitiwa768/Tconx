@@ -1,0 +1,18 @@
+{
+  "type": "tconstruct:alloy",
+  "inputs": [
+    {
+      "name": "tconx:molten_iron",
+      "amount": 30
+    },
+    {
+      "name": "taiga:molten_karmesine",
+      "amount": 100
+    }
+  ],
+  "result": {
+    "fluid": "tconx:molten_hachilight",
+    "amount": 30
+  },
+  "temperature": 900
+}
