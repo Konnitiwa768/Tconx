@@ -1,0 +1,9 @@
+rootProject.name= 'tconx'
+
+pluginManagement {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net/' }
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
