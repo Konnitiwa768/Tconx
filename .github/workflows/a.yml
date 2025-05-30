@@ -21,8 +21,16 @@ jobs:
           java-version: '8'
           distribution: 'temurin'
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
+      - name: Download Gradle Wrapper scripts & jar
+        run: |
+          mkdir -p gradle/wrapper
+          curl -o gradlew https://raw.githubusercontent.com/gradle/gradle/master/gradlew
+          curl -o gradlew.bat https://raw.githubusercontent.com/gradle/gradle/master/gradlew.bat
+          chmod +x gradlew
+          curl -L -o gradle/wrapper/gradle-wrapper.jar https://repo.gradle.org/gradle/libs-releases-local/org/gradle/gradle-wrapper/8.1.1/gradle-wrapper-8.1.1.jar
+          if [ ! -f gradle/wrapper/gradle-wrapper.properties ]; then
+            echo "distributionUrl=https\\://services.gradle.org/distributions/gradle-8.1.1-bin.zip" > gradle/wrapper/gradle-wrapper.properties
+          fi
 
       - name: Build with Gradle
         run: ./gradlew build
