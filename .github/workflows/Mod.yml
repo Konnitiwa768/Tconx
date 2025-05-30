@@ -3,7 +3,7 @@ name: Build and Upload Mod
 on:
   push:
     branches:
-      - 1.21
+      - main
 
 jobs:
   build:
