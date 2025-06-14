@@ -1,42 +1,73 @@
-name: Build Mod
+pluginManagement {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net/' }
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
 
-on:
-  push:
-    branches:
-      - main
-    tags:
-      - '*'  # タグpushも検知する（リリース用にも使うため）
+rootProject.name = 'tconx'
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+plugins {
+    id 'net.minecraftforge.gradle' version '6.0.24'
+    id 'java'
+}
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+group = 'com.konnitiwa768.tconx'
+archivesBaseName = 'tconx'
+version = '1.0.0'
 
-      - name: Set up JDK 8
-        uses: actions/setup-java@v2
-        with:
-          java-version: '8'
-          distribution: 'temurin'
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
 
-      - name: Download Gradle Wrapper scripts & jar
-        run: |
-          mkdir -p gradle/wrapper
-          curl -o gradlew https://raw.githubusercontent.com/gradle/gradle/master/gradlew
-          curl -o gradlew.bat https://raw.githubusercontent.com/gradle/gradle/master/gradlew.bat
-          chmod +x gradlew
-          curl -L -o gradle/wrapper/gradle-wrapper.jar https://repo.gradle.org/gradle/libs-releases-local/org/gradle/gradle-wrapper/8.1.1/gradle-wrapper-8.1.1.jar
-          if [ ! -f gradle/wrapper/gradle-wrapper.properties ]; then
-            echo "distributionUrl=https\\://services.gradle.org/distributions/gradle-8.1.1-bin.zip" > gradle/wrapper/gradle-wrapper.properties
-          fi
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
 
-      - name: Build with Gradle
-        run: ./gradlew build
+    runs {
+        client {
+            workingDirectory project.file('run')
+        }
+        server {
+            workingDirectory project.file('run')
+        }
+    }
+}
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: built-jar
-          path: build/libs/*.jar
+repositories {
+    maven {
+        name = 'forge'
+        url = 'https://maven.minecraftforge.net/'
+    }
+    maven {
+        name = 'blamejared'
+        url = 'https://maven.blamejared.com/'
+    }
+    maven {
+        name = 'CurseMaven'
+        url = 'https://cursemaven.com'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.1.0'
+
+    // Tinkers' Construct (CurseForge file ID: 5060490)
+    compileOnly fg.deobf("curse.maven:tinkers-construct-74072:5060490")
+}
+
+jar {
+    manifest {
+        attributes(
+            'Specification-Title': 'tconx',
+            'Specification-Vendor': 'konnitiwa768',
+            'Specification-Version': '1.0.0',
+            'Implementation-Title': project.name,
+            'Implementation-Version': project.version,
+            'Implementation-Vendor': 'konnitiwa768'
+        )
+    }
+}
