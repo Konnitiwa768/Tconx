@@ -55,8 +55,8 @@ repositories {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.20.1-47.1.0'
 
-    // Tinkers' Construct (CurseForge file ID: 5060490)
-    compileOnly fg.deobf("curse.maven:tinkers-construct-6266282")
+    // 正しい CurseForge 依存関係指定（slug-projectId: fileId）
+    compileOnly fg.deobf("curse.maven:tinkers-construct-74072:6266282")
 }
 
 jar {
