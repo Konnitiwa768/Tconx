@@ -1,3 +1,13 @@
+pluginManagement {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net/' }
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'tconx'
+
 plugins {
     id 'net.minecraftforge.gradle' version '6.0.24'
     id 'java'
@@ -15,6 +25,7 @@ java {
 
 minecraft {
     mappings channel: 'official', version: '1.20.1'
+
     runs {
         client {
             workingDirectory project.file('run')
@@ -27,14 +38,25 @@ minecraft {
 
 repositories {
     maven {
+        name = 'forge'
+        url = 'https://maven.minecraftforge.net/'
+    }
+    maven {
         name = 'blamejared'
         url = 'https://maven.blamejared.com/'
     }
+    maven {
+        name = 'CurseMaven'
+        url = 'https://cursemaven.com'
+    }
+    mavenCentral()
 }
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.20.1-47.1.0'
-    compileOnly fg.deobf("slimeknights.tconstruct:TConstruct-1.20.1:3.7.5.312")
+
+    // Tinkers' Construct (CurseForge file ID: 5060490)
+    compileOnly fg.deobf("curse.maven:tinkers-construct-6266282")
 }
 
 jar {
