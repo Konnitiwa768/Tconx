@@ -2,11 +2,11 @@
   "type": "tconstruct:alloy",
   "inputs": [
     {
-      "name": "tconx:molten_iron",
+      "name": "tconstruct:molten_iron",
       "amount": 30
     },
     {
-      "name": "taiga:molten_karmesine",
+      "name": "tconx:molten_karmesine",
       "amount": 100
     }
   ],
