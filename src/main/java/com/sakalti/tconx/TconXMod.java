@@ -23,5 +23,6 @@ public class TConXMod {
     private void setup(final FMLCommonSetupEvent event) {
         // Tinkers' Construct APIとの連携や、初期化処理を書く場所
         // 例: TinkerRegistryにレシピ追加など
+        ModMaterialIntegration.registerMaterials();
     }
 }
