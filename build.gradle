@@ -5,7 +5,7 @@ plugins {
     id 'java'
 }
 
-group = 'com.konnitiwa768.tconx'
+group = 'com.sakalti.tconx'
 archivesBaseName = 'tconx'
 version = '1.0.0'
 
@@ -55,11 +55,11 @@ jar {
     manifest {
         attributes(
             'Specification-Title': 'tconx',
-            'Specification-Vendor': 'konnitiwa768',
+            'Specification-Vendor': 'sakalti',
             'Specification-Version': '1.0.0',
             'Implementation-Title': project.name,
             'Implementation-Version': project.version,
-            'Implementation-Vendor': 'konnitiwa768'
+            'Implementation-Vendor': 'sakalti'
         )
     }
 }
