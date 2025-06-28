@@ -2,6 +2,7 @@ package com.sakalti.tconx.registry;
 
 import com.sakalti.tconx.TconXMod;
 import com.sakalti.tconx.modifier.*;
+import com.sakalti.sakaplus.tconx.registry.lv1.Hachilight;
 import net.minecraft.util.Identifier;
 import slimeknights.tconstruct.library.materials.*;
 import slimeknights.tconstruct.library.materials.stats.*;
@@ -15,6 +16,7 @@ public class ModMaterialIntegration {
         registerMaterial(ModMaterials.NEHILIUM, 0x9370DB, ModStats.NEHILIUM_HEAD, ModStats.NEHILIUM_HANDLE, ModStats.NEHILIUM_EXTRA);
         registerMaterial(ModMaterials.KERIUM, 0x44ee44, ModStats.KERIUM_HEAD, ModStats.KERIUM_HANDLE, ModStats.KERIUM_EXTRA);
         registerMaterial(ModMaterials.URI, 0xFFD700, ModStats.URI_HEAD, ModStats.URI_HANDLE, ModStats.URI_EXTRA);
+        registerMaterial(Hachilight:HACILIGHT, 0xFFD700, Hachilight.HACILIGHT_HEAD, ModStats.HACILIGHT_HANDLE, ModStats.HACILIGHT_EXTRA);
 
         ModifierRegistry.register(new Identifier("tconx", "viberium_modifier"), new ViberiumModifier());
         ModifierRegistry.register(new Identifier("tconx", "nehilium_modifier"), new NehiliumModifier());
