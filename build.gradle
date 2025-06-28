@@ -4,7 +4,6 @@ plugins {
 }
 
 // pluginsブロックの後に書く必要がある
-rootProject.name = 'tconx'
 
 group = 'com.sakalti.tconx'
 archivesBaseName = 'tconx'
