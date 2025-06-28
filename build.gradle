@@ -1,9 +1,10 @@
-rootProject.name = 'tconx'
-
 plugins {
     id 'net.minecraftforge.gradle' version '6.0.24'
     id 'java'
 }
+
+// pluginsブロックの後に書く必要がある
+rootProject.name = 'tconx'
 
 group = 'com.sakalti.tconx'
 archivesBaseName = 'tconx'
