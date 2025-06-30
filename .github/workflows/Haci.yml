@@ -6,8 +6,8 @@ on:
     branches:
       - main
     paths:
-      - 'parts/*.png'
-      - '.github/workflows/Recipe.yml'
+      - 'src/main/java/*'
+      - '.github/workflows/Haci.yml'
       - 'a.py'
 
 jobs:
