@@ -1,0 +1,38 @@
+name: Generate Item JSONs
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'parts/*.png'
+      - '.github/workflows/Recipe.yml'
+      - 'a.py'
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install Pillow
+      run: |
+        python -m pip install --upgrade pip
+        pip install Pillow
+
+    - name: Generate item jsons
+      run: python a.py
+      
+    - name: Commit and push generated jsons
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        pull: true
+        commit_message: "Auto: Generate item jsons"
+        file_pattern: "src/main/*"
