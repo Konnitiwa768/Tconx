@@ -1,7 +1,7 @@
 package com.sakalti.tconx.registry;
 
 import com.sakalti.tconx.TconX;
-import com.sakalti.tconx.HaciliteModifier;
+import com.sakalti.tconx.modifier.HaciliteModifier;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
