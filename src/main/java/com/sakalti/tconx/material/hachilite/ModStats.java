@@ -1,6 +1,6 @@
 package com.sakalti.tconx.material.hachilite;
 
-import slimeknights.tconstruct.library.materials.stats.*;
+import slimeknights.tconstruct.library.tools.stat.ToolStats;
 
 public class ModStats {
 
