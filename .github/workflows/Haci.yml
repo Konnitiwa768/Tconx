@@ -34,4 +34,4 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
         commit_message: "Auto: Generate item jsons"
-        file_pattern: "src/main/*"
+        file_pattern: "src/main/java/*"
