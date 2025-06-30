@@ -12,6 +12,8 @@ public class ModStats {
 
     public static ExtraMaterialStats HACHILITE_EXTRA = new ExtraMaterialStats(50); // 追加耐久力
 
+    public static BowMaterialStats HACHILITE_BOW = new BowMaterialStats(
+        0.8f, 1.0f, 0.05f);  // 弓速度, 弓の引き具合, 精度補正
     public static void registerStats() {
         // 必要に応じて実装
     }
