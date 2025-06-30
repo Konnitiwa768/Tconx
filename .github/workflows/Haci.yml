@@ -33,6 +33,5 @@ jobs:
     - name: Commit and push generated jsons
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
-        pull: true
         commit_message: "Auto: Generate item jsons"
         file_pattern: "src/main/*"
