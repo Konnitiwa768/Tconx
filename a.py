@@ -5,28 +5,30 @@ from PIL import Image
 # 素材情報
 MATERIAL_NAME = "hachilite"
 MATERIAL_JP_NAME = "ハチライト"
+MOD_ID = "tconx"
 COLOR_HEX = 0x4FC3F7  # 水色
 
-# プロジェクトベースパス（現在のフォルダを想定）
-BASE_PATH = Path("./")
+# ベースパス（現状カレントディレクトリ直下）
+BASE_PATH = Path(".")
 
-# Javaソース配置パス
-JAVA_PATH = BASE_PATH / "src" / "main" / "java" / "com" / "example" / MATERIAL_NAME
+# Javaソースパス
+JAVA_PATH = BASE_PATH / "src" / "main" / "java" / "com" / "sakalti" / "tconx"
 
-# リソース配置パス
-RESOURCES_PATH = BASE_PATH / "src" / "main" / "resources" / "assets" / MATERIAL_NAME
+# リソースパス
+RESOURCES_PATH = BASE_PATH / "src" / "main" / "resources" / "assets" / MOD_ID
 
-# JSON配置フォルダ
+# 各種リソースディレクトリ
 MATERIALS_JSON_PATH = RESOURCES_PATH / "materials"
 LANG_JSON_PATH = RESOURCES_PATH / "lang"
+TEXTURES_INGOT_PATH = RESOURCES_PATH / "textures" / "item"
+TEXTURES_BLOCK_PATH = RESOURCES_PATH / "textures" / "block"
+MODELS_ITEM_PATH = RESOURCES_PATH / "models" / "item"
+MODELS_BLOCK_PATH = RESOURCES_PATH / "models" / "block"
+BLOCKSTATES_PATH = RESOURCES_PATH / "blockstates"
 
-# 画像配置フォルダ
-TEXTURES_PATH = RESOURCES_PATH / "textures" / "items"
-
-
-# Javaコードテンプレート
+# ======= Javaコード =======
 MOD_MATERIALS = f"""\
-package com.example.{MATERIAL_NAME};
+package com.sakalti.tconx;
 
 import net.minecraft.resources.ResourceLocation;
 import slimeknights.tconstruct.library.materials.Material;
@@ -42,14 +44,14 @@ public class ModMaterials {{
             new Material({MATERIAL_NAME.upper()}_ID, Material.DisplayName.withTranslationKey("material.{MATERIAL_NAME}"))
                 .setCraftable(true)
                 .setCastable(true)
-                .setFluid(new ResourceLocation("tconstruct", "molten_{MATERIAL_NAME}"))
+                .setFluid(new ResourceLocation("{MOD_ID}", "molten_{MATERIAL_NAME}"))
         );
     }}
 }}
 """
 
 MOD_STATS = f"""\
-package com.example.{MATERIAL_NAME};
+package com.sakalti.tconx;
 
 import slimeknights.tconstruct.library.materials.stats.*;
 
@@ -66,14 +68,14 @@ public class ModStats {{
 """
 
 MOD_CLIENT = f"""\
-package com.example.{MATERIAL_NAME};
+package com.sakalti.tconx;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.resources.ResourceLocation;
 
 public class ModClient {{
-    public static final ResourceLocation TEXTURE = new ResourceLocation("{MATERIAL_NAME}", "textures/items/{MATERIAL_NAME}.png");
+    public static final ResourceLocation TEXTURE = new ResourceLocation("{MOD_ID}", "textures/item/{MATERIAL_NAME}.png");
 
     public static void registerTextures() {{
         TextureManager textureManager = Minecraft.getInstance().getTextureManager();
@@ -82,10 +84,12 @@ public class ModClient {{
 }}
 """
 
-# JSON素材ファイル
+# ======= JSONファイル =======
+
+# materials/hachilite.json
 MATERIAL_JSON = f"""{{
   "name": "{MATERIAL_NAME}",
-  "fluid": "tconstruct:molten_{MATERIAL_NAME}",
+  "fluid": "{MOD_ID}:molten_{MATERIAL_NAME}",
   "color": {COLOR_HEX},
   "craftable": true,
   "castable": true,
@@ -93,7 +97,7 @@ MATERIAL_JSON = f"""{{
 }}
 """
 
-# ローカライズファイル (ja_jp.json)
+# lang/ja_jp.json （ローカライズ）
 LOCALE_JSON = f"""{{
   "material.{MATERIAL_NAME}": "{MATERIAL_JP_NAME}",
   "material.{MATERIAL_NAME}.head": "{MATERIAL_JP_NAME}のヘッド",
@@ -102,13 +106,42 @@ LOCALE_JSON = f"""{{
 }}
 """
 
-def write_file(path: Path, content: str):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
-        f.write(content)
-    print(f"Wrote {path}")
+# blockstates/hachilite_block.json
+BLOCKSTATE_JSON = f"""{{
+  "variants": {{
+    "": {{ "model": "{MOD_ID}:block/hachilite_block" }}
+  }}
+}}
+"""
 
-def generate_image(path: Path, color_hex: int, size=256):
+# models/block/hachilite_block.json
+BLOCK_MODEL_JSON = f"""{{
+  "parent": "block/cube_all",
+  "textures": {{
+    "all": "{MOD_ID}:block/hachilite_block"
+  }}
+}}
+"""
+
+# models/item/hachilite_block.json
+ITEM_MODEL_BLOCK_JSON = f"""{{
+  "parent": "{MOD_ID}:block/hachilite_block"
+}}
+"""
+
+# models/item/hachilite.json (インゴットモデル)
+ITEM_MODEL_INGOT_JSON = f"""{{
+  "parent": "item/generated",
+  "textures": {{
+    "layer0": "{MOD_ID}:item/hachilite"
+  }}
+}}
+"""
+
+# ======== 画像自動生成関数 ========
+from PIL import Image
+
+def generate_solid_color_image(path: Path, color_hex: int, size=256):
     r = (color_hex >> 16) & 0xFF
     g = (color_hex >> 8) & 0xFF
     b = color_hex & 0xFF
@@ -117,18 +150,31 @@ def generate_image(path: Path, color_hex: int, size=256):
     img.save(path)
     print(f"Saved image: {path}")
 
+# ======== ファイル書き込み関数 ========
+def write_file(path: Path, content: str):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(content)
+    print(f"Wrote {path}")
+
+# ======== メイン処理 ========
 def main():
-    # Javaコード書き出し
+    # Javaコード
     write_file(JAVA_PATH / "ModMaterials.java", MOD_MATERIALS)
     write_file(JAVA_PATH / "ModStats.java", MOD_STATS)
     write_file(JAVA_PATH / "ModClient.java", MOD_CLIENT)
 
-    # JSON書き出し
+    # JSON
     write_file(MATERIALS_JSON_PATH / f"{MATERIAL_NAME}.json", MATERIAL_JSON)
     write_file(LANG_JSON_PATH / "ja_jp.json", LOCALE_JSON)
+    write_file(BLOCKSTATES_PATH / f"{MATERIAL_NAME}_block.json", BLOCKSTATE_JSON)
+    write_file(MODELS_BLOCK_PATH / f"{MATERIAL_NAME}_block.json", BLOCK_MODEL_JSON)
+    write_file(MODELS_ITEM_PATH / f"{MATERIAL_NAME}_block.json", ITEM_MODEL_BLOCK_JSON)
+    write_file(MODELS_ITEM_PATH / f"{MATERIAL_NAME}.json", ITEM_MODEL_INGOT_JSON)
 
-    # 256x256水色画像生成
-    generate_image(TEXTURES_PATH / f"{MATERIAL_NAME}.png", COLOR_HEX)
+    # 画像生成（水色256×256）
+    generate_solid_color_image(TEXTURES_INGOT_PATH / f"{MATERIAL_NAME}.png", COLOR_HEX)
+    generate_solid_color_image(TEXTURES_BLOCK_PATH / f"{MATERIAL_NAME}_block.png", COLOR_HEX)
 
 if __name__ == "__main__":
     main()
