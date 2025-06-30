@@ -8,7 +8,7 @@ MATERIAL_JP_NAME = "ハチライト"
 COLOR_HEX = 0x4FC3F7  # 水色
 
 # プロジェクトベースパス（現在のフォルダを想定）
-BASE_PATH = Path("./output")
+BASE_PATH = Path("./")
 
 # Javaソース配置パス
 JAVA_PATH = BASE_PATH / "src" / "main" / "java" / "com" / "example" / MATERIAL_NAME
