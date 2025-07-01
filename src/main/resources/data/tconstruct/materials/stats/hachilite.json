@@ -1,0 +1,29 @@
+{
+  "material": "tconx:hachilite",
+  "stats": {
+    "head": {
+      "durability": 950,
+      "mining_speed": 6.5,
+      "attack": 3.2,
+      "harvest_level": 4
+    },
+    "handle": {
+      "modifier": 1.5,
+      "durability": 20
+    },
+    "extra": {
+      "durability": 50
+    },
+    "bow": {
+      "velocity": 0.8,
+      "draw_speed": 1.0,
+      "accuracy": 0.05
+    },
+    "armor": {
+      "durability": 18.0,
+      "defense": 7.0,
+      "toughness": 2.0,
+      "knockback_resistance": 0.1
+    }
+  }
+}
