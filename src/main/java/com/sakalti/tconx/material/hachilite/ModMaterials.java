@@ -1,6 +1,6 @@
 package com.sakalti.tconx.material.hachilite;
 
-import slimeknights.tconstruct.library.materials.MaterialId;
+import slimeknights.tconstruct.library.materials.IMaterialRegistry;
 
 public class ModMaterials {
 
