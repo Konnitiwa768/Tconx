@@ -12,6 +12,6 @@ public class ModMain {
     public ModMain() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         ModMaterials.registerMaterials();
-        ModFluids.registerFluids();
+        ModFluids.FLUIDS.register(modEventBus);
     }
 }
