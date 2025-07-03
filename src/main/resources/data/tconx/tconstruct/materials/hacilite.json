@@ -7,4 +7,9 @@
   "fluid": "tconx:molten_hacilite",
   "traits": ["tconx:hacilite_modifier"],
   "translationKey": "material.tconx.hacilite"
+  "traits": [
+    {
+      "name": "tconx:glacial_bind",
+      "level": 1
+    }
 }
