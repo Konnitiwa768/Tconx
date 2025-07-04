@@ -1,4 +1,4 @@
-package com.sakalti.tconx;
+package com.sakalti.tconx.modifier;
 
 import com.sakalti.tconx.modifier.GlacialBindModifier;
 import slimeknights.tconstruct.library.modifiers.Modifier;
