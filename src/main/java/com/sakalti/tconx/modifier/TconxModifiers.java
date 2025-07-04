@@ -1,4 +1,4 @@
-package com.sakalti.tconx;
+package com.sakalti.tconx.modifier;
 
 import com.sakalti.tconx.modifier.GlacialBindModifier;
 import net.minecraft.resources.ResourceLocation;
