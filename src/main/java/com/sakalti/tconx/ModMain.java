@@ -5,7 +5,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import com.sakalti.tconx.material.hachilite.ModMaterials;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
-import slimeknights.tconstruct.library.modifiers.Modifiers;
+import slimeknights.tconstruct.library.modifiers.Modifier;
 import com.sakalti.tconx.modifier.GlacialBindModifier;
 
 @Mod("tconx")
