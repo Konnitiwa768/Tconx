@@ -4,26 +4,15 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import slimeknights.tconstruct.library.modifiers.Modifier;
-import slimeknights.tconstruct.library.tools.context.LivingEntityContext;
+import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 public class GlacialBindModifier extends Modifier {
 
-    public GlacialBindModifier() {
-        super();
-    }
-
     @Override
-    public void afterEntityHit(LivingEntityContext context, LivingEntity target, float damage, float newDamage, int level, boolean isCritical) {
+    public void afterEntityHit(ToolStack tool, LivingEntity attacker, LivingEntity target, float damage, boolean isCritical, int level) {
         if (target != null) {
             int durationTicks = 20 * 3 * level; // 3秒 × レベル
-            // Slowness III（効果レベル2 = III）
-            MobEffectInstance slowness = new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, durationTicks, 2);
-            target.addEffect(slowness);
+            target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, durationTicks, 2));
         }
-    }
-
-    @Override
-    public int getPriority() {
-        return 100;
     }
 }
