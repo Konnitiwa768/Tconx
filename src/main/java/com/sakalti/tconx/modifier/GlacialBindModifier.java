@@ -10,10 +10,9 @@ import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 public class GlacialBindModifier extends Modifier {
 
     @Override
-    public void onEntityDamaged(ToolStack tool, int level, LivingEntity target, LivingEntity attacker, float damage, boolean isCritical, AttackContext context) {
-        if (target != null) {
+    public void afterEntityHit(ToolStack tool, int level, LivingEntity target, LivingEntity attacker, float damageDealt, boolean isCritical, boolean fullyCharged, AttackContext context) {
+        if (target != null && !target.level().isClientSide()) {
             int durationTicks = 20 * 3 * level; // 3秒 × レベル
-            // スロー効果（Movement Slowdown）、強さは2（Potionレベル3相当）
             MobEffectInstance slowness = new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, durationTicks, 2);
             target.addEffect(slowness);
         }
