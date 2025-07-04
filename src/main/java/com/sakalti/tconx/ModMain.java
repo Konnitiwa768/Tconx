@@ -13,7 +13,7 @@ import com.sakalti.tconx.modifier.GlacialBindModifier;
 public class ModMain {
     
     public ModMain() {
-        TconxModifiers.register(FMLJavaModLoadingContext.get().getModEventBus());
+        TconxModifiers.init();
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         ModMaterials.registerMaterials();
     }
