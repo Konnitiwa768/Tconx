@@ -8,7 +8,6 @@ import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 public class GlacialBindModifier extends Modifier {
 
-    @Override
     public void afterEntityHit(ToolStack tool, int level, LivingEntity target, LivingEntity attacker, float damage, boolean isCritical) {
         if (target == null) return;
 
