@@ -1,7 +1,7 @@
 package com.sakalti.tconx;
 
 import net.minecraftforge.fml.common.Mod;
-import com.sakalti.tconx.modifier.TconxModifier
+import com.sakalti.tconx.modifier.TconxModifiers;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import com.sakalti.tconx.material.hachilite.ModMaterials;
