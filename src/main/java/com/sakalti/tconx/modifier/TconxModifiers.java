@@ -6,7 +6,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import slimeknights.tconstruct.library.modifiers.Modifier;
-import slimeknights.tconstruct.library.modifiers.ModifiersRegistry;
+import slimeknights.tconstruct.library.modifiers.util.ModifierDeferredRegistry;
 
 public class TconxModifiers {
 
