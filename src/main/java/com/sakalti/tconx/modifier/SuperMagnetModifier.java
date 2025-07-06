@@ -14,8 +14,7 @@ public class SuperMagnetModifier extends Modifier {
     // 半径（引き寄せ範囲）を決める
     private static final double RADIUS = 6.0D;
     private static final double PULL_STRENGTH = 0.5D;
-
-    @Override
+    
     public void onInventoryTick(ToolStack tool, int level, LivingEntity holder, boolean isSelected, boolean isHeld) {
         // 手に持っている場合のみ発動
         if (holder == null || holder.level().isClientSide) return;
