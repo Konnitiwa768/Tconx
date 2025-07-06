@@ -8,16 +8,21 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.OreBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.placement.*;
+import net.minecraft.world.level.levelgen.placement.BiomeFilter;
+import net.minecraft.world.level.levelgen.placement.CountPlacement;
+import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
+import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
+
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.level.BiomeEvent;
+import net.minecraftforge.event.level.BiomeEvent.ModifyFeatures;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.registries.DeferredRegister;
@@ -74,10 +79,10 @@ public class ModMetals {
         ITEMS.register(eventBus);
         MinecraftForge.EVENT_BUS.addListener(ModMetals::addWorldgen);
 
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientOnly::init);
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, ClientOnly::init);
     }
 
-    private static void addWorldgen(BiomeEvent.ModifyFeatures event) {
+    private static void addWorldgen(ModifyFeatures event) {
         // Hachilite生成
         var hachiliteConfig = new OreConfiguration(
                 OreConfiguration.Predicates.STONE_ORE_REPLACEABLES,
@@ -89,7 +94,7 @@ public class ModMetals {
                 List.of(CountPlacement.of(10), InSquarePlacement.spread(),
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(64)),
                         BiomeFilter.biome()));
-        event.getFeatures().add(GenerationStep.Decoration.UNDERGROUND_ORES, hachilitePlaced);
+        event.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, hachilitePlaced);
 
         // Kanilite生成
         var kaniliteConfig = new OreConfiguration(
@@ -102,7 +107,7 @@ public class ModMetals {
                 List.of(CountPlacement.of(2), InSquarePlacement.spread(),
                         HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(16)),
                         BiomeFilter.biome()));
-        event.getFeatures().add(GenerationStep.Decoration.UNDERGROUND_ORES, kanilitePlaced);
+        event.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, kanilitePlaced);
 
         // Herdyeen生成
         var herdyeenConfig = new OreConfiguration(
@@ -115,7 +120,7 @@ public class ModMetals {
                 List.of(CountPlacement.of(4), InSquarePlacement.spread(),
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(10), VerticalAnchor.absolute(50)),
                         BiomeFilter.biome()));
-        event.getFeatures().add(GenerationStep.Decoration.UNDERGROUND_ORES, herdyeenPlaced);
+        event.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, herdyeenPlaced);
 
         // Ostlum生成
         var ostlumConfig = new OreConfiguration(
@@ -128,7 +133,7 @@ public class ModMetals {
                 List.of(CountPlacement.of(4), InSquarePlacement.spread(),
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(10), VerticalAnchor.absolute(50)),
                         BiomeFilter.biome()));
-        event.getFeatures().add(GenerationStep.Decoration.UNDERGROUND_ORES, ostlumPlaced);
+        event.getGeneration().addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, ostlumPlaced);
     }
 
     @OnlyIn(Dist.CLIENT)
