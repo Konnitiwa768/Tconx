@@ -36,6 +36,7 @@ jobs:
         with:
           token: ${{ secrets.CF_API_KEY }}
           project_id: 684216
+          game_endpoint: minecraft
           file_path: build/libs/*.jar
           changelog: "自動ビルド & アップロード"
           release_type: release
