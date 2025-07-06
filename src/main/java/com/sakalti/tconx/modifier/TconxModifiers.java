@@ -9,7 +9,6 @@ public class TconxModifiers {
 
     public static final Modifier GLACIAL_BIND = new GlacialBindModifier();
     public static final Modifier SUPERMAGNET = new SuperMagnetModifier();
-    public static final Modifier GLACIAL_BIND = new GlacialBindModifier();
     public static final Modifier ICE_BIND = new IceBindModifier();
     
     
