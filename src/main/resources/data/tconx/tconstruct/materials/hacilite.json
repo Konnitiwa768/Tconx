@@ -5,7 +5,6 @@
   "hidden": false,
   "color": "#56d8e8",
   "fluid": "tconx:molten_hacilite",
-  "traits": ["tconx:hacilite_modifier"],
   "translationKey": "material.tconx.hacilite"
   "traits": [
     {
