@@ -5,7 +5,6 @@
   "hidden": false,
   "color": "#ff66ff",
   "fluid": "tconx:molten_kanilite",
-  "traits": ["tconx:kanilite_modifier"],
   "translationKey": "material.tconx.kanilite"
   "traits": [
     {
