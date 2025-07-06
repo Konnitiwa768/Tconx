@@ -2,8 +2,6 @@
   "name": "Molten Hachilite",
   "temperature": 1300,
   "fluid": {
-    "still_texture": "tconstruct:block/molten_iron_still",
-    "flowing_texture": "tconstruct:block/molten_iron_flow",
     "color": "#ff66ff",
     "luminosity": 15,
     "density": 2000,
