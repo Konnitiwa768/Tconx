@@ -2,8 +2,6 @@
   "name": "Molten Hachilite",
   "temperature": 1000,
   "fluid": {
-    "still_texture": "tconstruct:block/molten_cobalt_still",
-    "flowing_texture": "tconstruct:block/molten_cobalt_flow",
     "color": "#00FFDD",
     "luminosity": 8,
     "density": 2000,
