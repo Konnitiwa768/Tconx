@@ -10,11 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Modpackリポジトリをチェックアウト
       - name: Checkout Modpack repository
         uses: actions/checkout@v3
 
-      # 2. Tconxリポジトリのsrcフォルダだけを上書きコピー
       - name: Checkout Tconx src
         uses: actions/checkout@v3
         with:
@@ -38,3 +36,24 @@ jobs:
           files: build/libs/*.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # --- ここからcf-uploaderによるCurseForge自動アップロード ---
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install cf-uploader
+        run: pip install cf-uploader
+      - name: Upload to CurseForge (cf-uploader)
+        env:
+          CURSEFORGE_API_KEY: ${{ secrets.CF_API_KEY }}
+        run: |
+          latest_jar=$(ls build/libs/*.jar | sort -V | tail -n1)
+          cf-uploader upload \
+            --api-key "$CURSEFORGE_API_KEY" \
+            --project-id 684215 \
+            --file-path "$latest_jar" \
+            --changelog "自動ビルド & アップロード" \
+            --game-version "1.20.1" \
+            --release-type "release"
