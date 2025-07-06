@@ -35,7 +35,7 @@ jobs:
         uses: itsmeow/curseforge-upload@v3
         with:
           token: ${{ secrets.CF_API_KEY }}
-          project-id: 684215
+          project_id: 684216
           file_path: build/libs/*.jar
           changelog: "自動ビルド & アップロード"
           release_type: release
