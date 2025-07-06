@@ -32,7 +32,7 @@ jobs:
           path: build/libs/*.jar
 
       - name: Upload to CurseForge (curseforge-upload-action)
-        uses: itsmeow/curseforge-upload-action@v3
+        uses: itsmeow/curseforge-upload-action@v2
         with:
           api-token: ${{ secrets.CF_API_KEY }}
           project-id: 684215
