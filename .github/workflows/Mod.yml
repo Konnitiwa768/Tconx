@@ -12,7 +12,7 @@ jobs:
     steps:
       # このリポジトリをチェックアウト
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # gradlewに実行権限を付与
       - name: Grant execute permission for gradlew
