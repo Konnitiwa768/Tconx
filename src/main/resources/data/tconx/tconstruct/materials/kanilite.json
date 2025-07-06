@@ -1,0 +1,16 @@
+{
+  "craftable": true,
+  "tier": 4,
+  "sortOrder": 4,
+  "hidden": false,
+  "color": "#ff66ff",
+  "fluid": "tconx:molten_kanilite",
+  "traits": ["tconx:kanilite_modifier"],
+  "translationKey": "material.tconx.kanilite"
+  "traits": [
+    {
+      "name": "tconx:super_magnet",
+      "level": 1
+    }
+  ]
+}
