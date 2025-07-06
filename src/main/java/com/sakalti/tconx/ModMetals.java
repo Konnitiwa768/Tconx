@@ -17,6 +17,7 @@ import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.CountPlacement;
 import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -85,12 +86,12 @@ public class ModMetals {
     private static void addWorldgen(ModifyFeatures event) {
         // Hachilite生成
         var hachiliteConfig = new OreConfiguration(
-                OreConfiguration.Predicates.STONE_ORE_REPLACEABLES,
+                OreConfiguration.commonOreReplaceables(),
                 HACHILITE_ORE.get().defaultBlockState(),
                 8);
         var hachiliteFeature = new ConfiguredFeature<>(Feature.ORE, hachiliteConfig);
         var hachilitePlaced = new PlacedFeature(
-                BuiltInRegistries.CONFIGURED_FEATURE.wrapAsHolder(hachiliteFeature),
+                BuiltInRegistries.CONFIGURED_FEATURE.getHolderOrThrow(hachiliteFeature),
                 List.of(CountPlacement.of(10), InSquarePlacement.spread(),
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(64)),
                         BiomeFilter.biome()));
@@ -98,12 +99,12 @@ public class ModMetals {
 
         // Kanilite生成
         var kaniliteConfig = new OreConfiguration(
-                OreConfiguration.Predicates.STONE_ORE_REPLACEABLES,
+                OreConfiguration.commonOreReplaceables(),
                 KANILITE_ORE.get().defaultBlockState(),
                 7);
         var kaniliteFeature = new ConfiguredFeature<>(Feature.ORE, kaniliteConfig);
         var kanilitePlaced = new PlacedFeature(
-                BuiltInRegistries.CONFIGURED_FEATURE.wrapAsHolder(kaniliteFeature),
+                BuiltInRegistries.CONFIGURED_FEATURE.getHolderOrThrow(kaniliteFeature),
                 List.of(CountPlacement.of(2), InSquarePlacement.spread(),
                         HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(16)),
                         BiomeFilter.biome()));
@@ -111,12 +112,12 @@ public class ModMetals {
 
         // Herdyeen生成
         var herdyeenConfig = new OreConfiguration(
-                OreConfiguration.Predicates.STONE_ORE_REPLACEABLES,
+                OreConfiguration.commonOreReplaceables(),
                 HERDYEEN_ORE.get().defaultBlockState(),
                 6);
         var herdyeenFeature = new ConfiguredFeature<>(Feature.ORE, herdyeenConfig);
         var herdyeenPlaced = new PlacedFeature(
-                BuiltInRegistries.CONFIGURED_FEATURE.wrapAsHolder(herdyeenFeature),
+                BuiltInRegistries.CONFIGURED_FEATURE.getHolderOrThrow(herdyeenFeature),
                 List.of(CountPlacement.of(4), InSquarePlacement.spread(),
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(10), VerticalAnchor.absolute(50)),
                         BiomeFilter.biome()));
@@ -124,12 +125,12 @@ public class ModMetals {
 
         // Ostlum生成
         var ostlumConfig = new OreConfiguration(
-                OreConfiguration.Predicates.STONE_ORE_REPLACEABLES,
+                OreConfiguration.commonOreReplaceables(),
                 OSTLUM_ORE.get().defaultBlockState(),
                 6);
         var ostlumFeature = new ConfiguredFeature<>(Feature.ORE, ostlumConfig);
         var ostlumPlaced = new PlacedFeature(
-                BuiltInRegistries.CONFIGURED_FEATURE.wrapAsHolder(ostlumFeature),
+                BuiltInRegistries.CONFIGURED_FEATURE.getHolderOrThrow(ostlumFeature),
                 List.of(CountPlacement.of(4), InSquarePlacement.spread(),
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(10), VerticalAnchor.absolute(50)),
                         BiomeFilter.biome()));
