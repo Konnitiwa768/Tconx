@@ -16,5 +16,6 @@ public class ModMain {
         TconxModifiers.init();
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         ModMaterials.registerMaterials();
+        ModMetals.register();
     }
 }
