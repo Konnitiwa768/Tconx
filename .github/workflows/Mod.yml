@@ -10,37 +10,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Modpack repository
+      # このリポジトリをチェックアウト
+      - name: Checkout repository
         uses: actions/checkout@v3
 
+      # gradlewに実行権限を付与
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
 
+      # JDK 17セットアップ
       - name: Set up JDK 17
         uses: actions/setup-java@v2
         with:
           java-version: '17'
           distribution: 'temurin'
 
+      # Gradleビルド
       - name: Build with Gradle
         run: ./gradlew build
 
-      # === ここでJARファイルをアーティファクトとしてアップロード ===
+      # JARをアーティファクトとしてアップロード
       - name: Upload JAR as Artifact
         uses: actions/upload-artifact@v3
         with:
           name: mod-jar
           path: build/libs/*.jar
 
-      # --- cf-uploaderによるCurseForge自動アップロード ---
+      # cf-uploaderのためのPythonセットアップ
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
+      # cf-uploaderインストール
       - name: Install cf-uploader
         run: pip install cf-uploader
 
+      # CurseForgeへ自動アップロード
       - name: Upload to CurseForge (cf-uploader)
         env:
           CURSEFORGE_API_KEY: ${{ secrets.CF_API_KEY }}
