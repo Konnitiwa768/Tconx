@@ -26,6 +26,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.level.BiomeEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -75,53 +76,37 @@ public class ModMetals {
     public static final RegistryObject<Item> OSTLUM_INGOT = ITEMS.register("ostlum_ingot",
             () -> new Item(new Item.Properties()));
 
-    /**
-     * モッド初期化時に呼ぶこと。
-     * 例: ModMetals.register(FMLJavaModLoadingContext.get().getModEventBus());
-     */
+    /** モッド初期化時に呼び出し */
     public static void register(IEventBus modEventBus) {
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
         MinecraftForge.EVENT_BUS.addListener(ModMetals::addWorldgen);
-
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientOnly::init);
     }
 
-    /**
-     * 鉱石の自然生成追加（herdyeen, ostlumは除外）
-     */
+    /** 鉱石の自然生成追加：herdyeen, ostlum は除外 */
     private static void addWorldgen(BiomeEvent.ModifyFeatures event) {
-        // Hachilite ore の生成設定
-        OreConfiguration hachiliteConfig = new OreConfiguration(
-                List.of(OreConfiguration.target(OreConfiguration.commonOreReplaceables(), HACHILITE_ORE.get().defaultBlockState())),
-                8);
-        ConfiguredFeature<?, ?> hachiliteFeature = new ConfiguredFeature<>(Feature.ORE, hachiliteConfig);
-        PlacedFeature hachilitePlaced = new PlacedFeature(
-                Holder.direct(hachiliteFeature),
-                List.of(
-                        CountPlacement.of(10),
-                        InSquarePlacement.spread(),
-                        HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(64)),
-                        BiomeFilter.biome()
-                ));
-        event.getFeatures().add(BiomeEvent.Decoration.UNDERGROUND_ORES, hachilitePlaced);
+        // Hachilite
+        registerOre(event, HACHILITE_ORE, 8, 10, VerticalAnchor.absolute(0), VerticalAnchor.absolute(64));
+        // Kanilite
+        registerOre(event, KANILITE_ORE, 7, 2, VerticalAnchor.absolute(-64), VerticalAnchor.absolute(16));
+    }
 
-        // Kanilite ore の生成設定
-        OreConfiguration kaniliteConfig = new OreConfiguration(
-                List.of(OreConfiguration.target(OreConfiguration.commonOreReplaceables(), KANILITE_ORE.get().defaultBlockState())),
-                7);
-        ConfiguredFeature<?, ?> kaniliteFeature = new ConfiguredFeature<>(Feature.ORE, kaniliteConfig);
-        PlacedFeature kanilitePlaced = new PlacedFeature(
-                Holder.direct(kaniliteFeature),
-                List.of(
-                        CountPlacement.of(2),
-                        InSquarePlacement.spread(),
-                        HeightRangePlacement.triangle(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(16)),
-                        BiomeFilter.biome()
-                ));
-        event.getFeatures().add(BiomeEvent.Decoration.UNDERGROUND_ORES, kanilitePlaced);
-
-        // herdyeen と ostlum は自然生成しないため、ここには記述しません。
+    private static void registerOre(BiomeEvent.ModifyFeatures event, RegistryObject<Block> block, int size, int count,
+                                    VerticalAnchor minY, VerticalAnchor maxY) {
+        OreConfiguration config = new OreConfiguration(
+            List.of(OreConfiguration.target(OreConfiguration.commonOreReplaceables(), block.get().defaultBlockState())),
+            size);
+        ConfiguredFeature<?, ?> feature = new ConfiguredFeature<>(Feature.ORE, config);
+        PlacedFeature placed = new PlacedFeature(
+            Holder.direct(feature),
+            List.of(
+                CountPlacement.of(count),
+                InSquarePlacement.spread(),
+                HeightRangePlacement.uniform(minY, maxY),
+                BiomeFilter.biome()
+            ));
+        event.getFeatures().add(BiomeEvent.Decoration.UNDERGROUND_ORES, placed);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -131,12 +116,9 @@ public class ModMetals {
         }
 
         private static void registerItemModels(ModelEvent.RegisterAdditional event) {
-            event.register(new ResourceLocation(MODID, "item/hachilite_ingot"));
-            event.register(new ResourceLocation(MODID, "item/hachilite_raw"));
-            event.register(new ResourceLocation(MODID, "item/kanilite_ingot"));
-            event.register(new ResourceLocation(MODID, "item/kanilite_raw"));
-            event.register(new ResourceLocation(MODID, "item/herdyeen_ingot"));
-            event.register(new ResourceLocation(MODID, "item/ostlum_ingot"));
+            for (String name : List.of("hachilite_ingot", "hachilite_raw", "kanilite_ingot", "kanilite_raw", "herdyeen_ingot", "ostlum_ingot")) {
+                event.register(new ResourceLocation(MODID, "item/" + name));
+            }
         }
     }
 }
