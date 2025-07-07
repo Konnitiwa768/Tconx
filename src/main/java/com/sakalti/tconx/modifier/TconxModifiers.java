@@ -11,7 +11,7 @@ public class TconxModifiers {
     public static final Modifier GLACIAL_BIND = new GlacialBindModifier();
     public static final Modifier SUPERMAGNET = new SuperMagnetModifier();
     public static final Modifier ICE_BIND = new IceBindModifier();
-    public static final Modifier LIFESTEAL = new_LifestealModifier();
+    public static final Modifier LIFESTEAL = new LifestealModifier();
     
     public static void init() {
         // 何も登録しない、自前インスタンス保持のみ
