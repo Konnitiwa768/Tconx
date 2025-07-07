@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "tconx:item/hachilite_block"
+    "layer0": "tconx:item/herdyeen_block"
   }
 }
