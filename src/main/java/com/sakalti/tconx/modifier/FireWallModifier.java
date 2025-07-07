@@ -1,4 +1,4 @@
-package com.sakalti.tconx.trait;
+package com.sakalti.tconx.modifier;
 
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
