@@ -20,7 +20,7 @@ jobs:
         python-version: '3.x'
 
     - name: Run model generation script
-      run: python3 scripts/seisei.py
+      run: python3 seisei.py
 
     - name: Commit and push if changed
       run: |
