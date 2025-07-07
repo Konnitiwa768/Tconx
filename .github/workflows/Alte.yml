@@ -2,6 +2,8 @@ name: Auto Generate Blockstates and Models
 
 on:
   push:
+    branches:
+      - main3
     paths:
       - 'src/main/resources/assets/tconx/textures/block/**'
   workflow_dispatch:
@@ -73,6 +75,7 @@ jobs:
         git config user.email "github-actions[bot]@users.noreply.github.com"
         git add src/main/resources/assets/tconx/blockstates/ src/main/resources/assets/tconx/models/
         if ! git diff --cached --quiet; then
+          git pull
           git commit -m "Auto-generate blockstates and models from textures"
           git push
         else
