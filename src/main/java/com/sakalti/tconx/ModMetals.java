@@ -16,7 +16,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class ModMetals {
 
@@ -24,54 +26,46 @@ public class ModMetals {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 
-    // ---- Block & Item 登録 ----
-    public static final RegistryObject<Block> HACHILITE_ORE = BLOCKS.register("hachilite_ore",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(3f)
-                    .requiresCorrectToolForDrops()));  // 鉄以上推奨（tags側で制御）
+    private static final List<String> autoRegisterItemModels = new ArrayList<>();
 
-    public static final RegistryObject<Block> HACHILITE_BLOCK = BLOCKS.register("hachilite_block",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(5f)
-                    .requiresCorrectToolForDrops()));
+    // ---- ブロック & アイテム 登録 ----
 
-    public static final RegistryObject<Item> HACHILITE_RAW = ITEMS.register("hachilite_raw",
-            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Block> HACHILITE_ORE = registerBlock("hachilite_ore", 3f);
+    public static final RegistryObject<Block> HACHILITE_BLOCK = registerBlock("hachilite_block", 7f);
+    public static final RegistryObject<Item> HACHILITE_RAW = registerSimpleItem("hachilite_raw");
+    public static final RegistryObject<Item> HACHILITE_INGOT = registerSimpleItem("hachilite_ingot");
 
-    public static final RegistryObject<Item> HACHILITE_INGOT = ITEMS.register("hachilite_ingot",
-            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Block> KANILITE_ORE = registerBlock("kanilite_ore", 4f);
+    public static final RegistryObject<Block> KANILITE_BLOCK = registerBlock("kanilite_block", 10f);
+    public static final RegistryObject<Item> KANILITE_RAW = registerSimpleItem("kanilite_raw");
+    public static final RegistryObject<Item> KANILITE_INGOT = registerSimpleItem("kanilite_ingot");
 
-    public static final RegistryObject<Block> KANILITE_ORE = BLOCKS.register("kanilite_ore",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(4f)
-                    .requiresCorrectToolForDrops()));  // 鉄以上推奨
+    public static final RegistryObject<Block> IGNIZ_ORE = registerBlock("igniz_ore", 4f);
+    public static final RegistryObject<Block> IGNIZ_BLOCK = registerBlock("igniz_block", 13f);
+    public static final RegistryObject<Item> IGNIZ_RAW = registerSimpleItem("igniz_raw");
+    public static final RegistryObject<Item> IGNIZ_INGOT = registerSimpleItem("igniz_ingot");
 
-    public static final RegistryObject<Block> KANILITE_BLOCK = BLOCKS.register("kanilite_block",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(6f)
-                    .requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> HERDYEEN_BLOCK = registerBlock("herdyeen_block", 18f);
+    public static final RegistryObject<Item> HERDYEEN_INGOT = registerSimpleItem("herdyeen_ingot");
 
-    public static final RegistryObject<Item> KANILITE_RAW = ITEMS.register("kanilite_raw",
-            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Block> OSTLUM_BLOCK = registerBlock("ostlum_block", 34f);
+    public static final RegistryObject<Item> OSTLUM_INGOT = registerSimpleItem("ostlum_ingot");
 
-    public static final RegistryObject<Item> KANILITE_INGOT = ITEMS.register("kanilite_ingot",
-            () -> new Item(new Item.Properties()));
+    // ---- 登録用 共通関数 ----
 
-    public static final RegistryObject<Block> HERDYEEN_BLOCK = BLOCKS.register("herdyeen_block",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(7f)
-                    .requiresCorrectToolForDrops()));  // ダイヤ以上推奨
+    private static RegistryObject<Block> registerBlock(String name, float strength) {
+        RegistryObject<Block> block = BLOCKS.register(name,
+                () -> new Block(BlockBehaviour.Properties.of()
+                        .strength(strength)
+                        .requiresCorrectToolForDrops()));
+        ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        return block;
+    }
 
-    public static final RegistryObject<Item> HERDYEEN_INGOT = ITEMS.register("herdyeen_ingot",
-            () -> new Item(new Item.Properties()));
-
-    public static final RegistryObject<Block> OSTLUM_BLOCK = BLOCKS.register("ostlum_block",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(7f)
-                    .requiresCorrectToolForDrops()));  // ダイヤ以上推奨
-
-    public static final RegistryObject<Item> OSTLUM_INGOT = ITEMS.register("ostlum_ingot",
-            () -> new Item(new Item.Properties()));
+    private static RegistryObject<Item> registerSimpleItem(String name) {
+        autoRegisterItemModels.add(name);
+        return ITEMS.register(name, () -> new Item(new Item.Properties()));
+    }
 
     // ---- 初期化 ----
     public static void register(IEventBus modEventBus) {
@@ -88,10 +82,7 @@ public class ModMetals {
         }
 
         private static void onRegisterModels(ModelEvent.RegisterAdditional event) {
-            for (String name : List.of(
-                    "hachilite_ingot", "hachilite_raw",
-                    "kanilite_ingot", "kanilite_raw",
-                    "herdyeen_ingot", "ostlum_ingot")) {
+            for (String name : autoRegisterItemModels) {
                 event.register(new ResourceLocation(MODID, "item/" + name));
             }
         }
