@@ -3,10 +3,12 @@ package com.sakalti.tconx.modifier;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import slimeknights.tconstruct.library.modifiers.Modifier;
+import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 import java.util.List;
 
-public class FireWallModifier {
+public class FireWallModifier extends Modifier {
 
     /**
      * FireWall効果を適用するメカニズム
