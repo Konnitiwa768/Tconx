@@ -1,6 +1,27 @@
 {
-  "material.hachilite": "ハチライト",
-  "material.hachilite.head": "ハチライトのヘッド",
-  "material.hachilite.handle": "ハチライトの柄",
-  "material.hachilite.extra": "ハチライトの追加"
+  "material.tcox.hachilite": "ハチライト",
+  "material.tcox.kanilite": "カニライト",
+  "material.tcox.herdyeen": "ハーディーン",
+  "material.tcox.ostlum": "オストラム",
+  "material.tcox.ioxium": "イオキシウム",
+  "material.tcox.igniz": "イグニズ",
+
+  "fluid.tcox.molten_hachilite": "溶融ハチライト",
+  "fluid.tcox.molten_kanilite": "溶融カニライト",
+  "fluid.tcox.molten_herdyeen": "溶融ハーディーン",
+  "fluid.tcox.molten_ostlum": "溶融オストラム",
+  "fluid.tcox.molten_ioxium": "溶融イオキシウム",
+  "fluid.tcox.molten_igniz": "溶融イグニズ",
+
+  "modifier.tcox.glacial_bind": "氷縛",
+  "modifier.tcox.lifesteal": "ライフスティール",
+  "modifier.tcox.ice_bind": "氷結束",
+  "modifier.tcox.long_spark": "長き閃光",
+  "modifier.tcox.super_magnet": "超磁石",
+  
+  "modifier.tcox.glacial_bind.description": "攻撃時、敵を鈍足状態にする。",
+  "modifier.tcox.super_magnet.description": "アイテムを引き寄せる。",
+  "modifier.tcox.lifesteal.description": "攻撃時、与えたダメージの一部を自身の体力として回復する。",
+  "modifier.tcox.ice_bind.description": "攻撃時、その方向に2m間隔に棘を発動する。",
+  "modifier.tcox.long_spark.description": "攻撃時、その方向に2m間隔に棘を発動する。ただし10mまでであり遠くほどダメージが高い。"
 }
