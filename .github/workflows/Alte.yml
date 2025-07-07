@@ -11,24 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-    - name: Set up Python 3.x
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
-    - name: Run model generation script
-      run: python3 seisei.py
+      - name: Run model generation script
+        run: python3 seisei.py
 
-    - name: Commit and push if changed
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        git add src/main/resources/assets/tconx/blockstates/ src/main/resources/assets/tconx/models/
-        if ! git diff --cached --quiet; then
-          git commit -m "Auto-generate blockstates and models from textures"
-          git push
-        else
-          echo "No changes detected"
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/main/resources/assets/tconx/blockstates/ src/main/resources/assets/tconx/models/
+          if ! git diff --cached --quiet; then
+            git pull
+            git commit -m "Auto-generate blockstates and models from textures"
+            git push
+          else
+            echo "No changes detected"
