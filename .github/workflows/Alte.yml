@@ -1,0 +1,79 @@
+name: Auto Generate Blockstates and Models
+
+on:
+  push:
+    paths:
+      - 'src/main/resources/assets/tconx/textures/block/**'
+  workflow_dispatch:
+
+jobs:
+  generate-models:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Generate models and blockstates JSON from texture files
+      run: |
+        import os
+        import json
+
+        base_dir = 'src/main/resources/assets/tconx'
+        texture_dir = os.path.join(base_dir, 'textures', 'block')
+        blockstates_dir = os.path.join(base_dir, 'blockstates')
+        models_block_dir = os.path.join(base_dir, 'models', 'block')
+        models_item_dir = os.path.join(base_dir, 'models', 'item')
+
+        os.makedirs(blockstates_dir, exist_ok=True)
+        os.makedirs(models_block_dir, exist_ok=True)
+        os.makedirs(models_item_dir, exist_ok=True)
+
+        texture_files = [f for f in os.listdir(texture_dir) if f.endswith('.png')]
+
+        for tex in texture_files:
+            name = tex[:-5]  # 拡張子除去
+
+            # blockstates
+            blockstate = {
+                "variants": {
+                    "": { "model": f"tconx:block/{name}" }
+                }
+            }
+            with open(os.path.join(blockstates_dir, f"{name}.json"), 'w', encoding='utf-8') as f:
+                json.dump(blockstate, f, indent=2, ensure_ascii=False)
+
+            # block model
+            block_model = {
+                "parent": "minecraft:block/cube_all",
+                "textures": {
+                    "all": f"tconx:block/{name}"
+                }
+            }
+            with open(os.path.join(models_block_dir, f"{name}.json"), 'w', encoding='utf-8') as f:
+                json.dump(block_model, f, indent=2, ensure_ascii=False)
+
+            # item model
+            item_model = {
+                "parent": "item/generated",
+                "textures": {
+                    "layer0": f"tconx:item/{name}"
+                }
+            }
+            with open(os.path.join(models_item_dir, f"{name}.json"), 'w', encoding='utf-8') as f:
+                json.dump(item_model, f, indent=2, ensure_ascii=False)
+    - name: Commit and push if changed
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git add src/main/resources/assets/tconx/blockstates/ src/main/resources/assets/tconx/models/
+        if ! git diff --cached --quiet; then
+          git commit -m "Auto-generate blockstates and models from textures"
+          git push
+        else
+          echo "No changes detected"
