@@ -6,7 +6,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-public class FireWallTrait {
+public class FireWallModifier {
 
     /**
      * FireWall効果を適用するメカニズム
