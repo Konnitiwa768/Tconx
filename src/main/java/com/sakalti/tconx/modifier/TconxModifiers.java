@@ -5,6 +5,7 @@ import com.sakalti.tconx.modifier.LongsparkModifier;
 import com.sakalti.tconx.modifier.SuperMagnetModifier;
 import com.sakalti.tconx.modifier.IceBindModifier;
 import com.sakalti.tconx.modifier.FireWallModifier;
+import com.sakalti.tconx.modifier.LaserPrismModifier;
 import com.sakalti.tconx.modifier.LifestealModifier;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 
@@ -16,6 +17,7 @@ public class TconxModifiers {
     public static final Modifier FIRE_WALL = new FireWallModifier();
     public static final Modifier LIFESTEAL = new LifestealModifier();
     public static final Modifier LONG_SPARK = new LongsparkModifier();
+    public static final Modifier LASER_PRISM = new LaserPrismModifier();
     
     public static void init() {
         // 何も登録しない、自前インスタンス保持のみ
