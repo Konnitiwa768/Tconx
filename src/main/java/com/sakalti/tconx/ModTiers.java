@@ -11,8 +11,8 @@ public class ModTiers {
 
     public static final Tier SUPER = TierSortingRegistry.registerTier(
             new ForgeTier(5, 0, 0.0f, 0.0f, 0,
-                    ModTags.Blocks.NEEDS_SUPER_TOOL, () -> Ingredient.of(ModMetals.SUPER_LV5_INGOT.get())),
-            new net.minecraft.resources.ResourceLocation(ModMetals.MODID, "super"),
+                    ModTags.Blocks.NEEDS_SUPER_TOOL, () -> Ingredient.of(ModMetals.IGNIZ_INGOT.get())),
+            new net.minecraft.resources.ResourceLocation(ModMetals.MODID, "igniz"),
             List.of(net.minecraft.world.item.Tiers.NETHERITE),
             List.of()
     );
