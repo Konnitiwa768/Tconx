@@ -6,5 +6,3 @@ pluginManagement {
         mavenCentral()
     }
 }
-
-rootProject.name = 'tconx'
