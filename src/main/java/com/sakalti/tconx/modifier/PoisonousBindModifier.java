@@ -1,7 +1,7 @@
 package com.sakalti.tconx.modifier;
 
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.StatusEffects;
+import net.minecraft.world.effect.StatusEffect;
 import net.minecraft.world.entity.LivingEntity;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
@@ -16,7 +16,7 @@ public class PoisonousBindModifier extends Modifier {
         int durationTicks = 20 * 3 * fixedLevel;  // 3秒 × レベル3
         int amplifier = Math.max(0, fixedLevel - 1);  // 2（Potionレベル3相当）
 
-        MobEffectInstance slowness = new MobEffectInstance(StatusEffects.POISON, durationTicks, amplifier);
+        MobEffectInstance slowness = new MobEffectInstance(StatusEffect.POISON, durationTicks, amplifier);
         target.addEffect(slowness);
     }
 }
