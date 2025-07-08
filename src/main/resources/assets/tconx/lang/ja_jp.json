@@ -7,6 +7,7 @@
   "material.tconx.igniz": "イグニズ",
   "material.tconx.dilonite": "ダイロナイト",
   "material.tconx.tiberium": "ティーベリウム",
+  "material.tconx.momongaite": "モモンガイト",
   
   "fluid.tconx.molten_hachilite": "溶融ハチライト",
   "fluid.tconx.molten_kanilite": "溶融カニライト",
@@ -16,8 +17,10 @@
   "fluid.tconx.molten_igniz": "溶融イグニズ",
   "fluid.tconx.molten_dilonite": "溶融ダイロナイト",
   "fluid.tconx.molten_tiberium": "溶融ティーベリウム",
+  "fluid.tconx.molten_momongaite": "溶融モモンガイト",
 
   "modifier.tconx.glacial_bind": "氷縛",
+  "modifier.tconx.poisonous_bind": "毒縛",
   "modifier.tconx.lifesteal": "ライフスティール",
   "modifier.tconx.ice_bind": "氷結束",
   "modifier.tconx.long_spark": "長き閃光",
@@ -25,6 +28,7 @@
   "modifier.tconx.fire_wall": "炎の壁",
   "modifier.tconx.laser_prism": "レーザープリズム",
   "modifier.tconx.glacial_bind.description": "攻撃時、敵を鈍足状態にする。",
+  "modifier.tconx.poisonous_bind.description": "攻撃時、敵を毒状態にする。",
   "modifier.tconx.fire_wall.description": "炎の壁を全方位に展開し相手にダメージをあたえる。",
   "modifier.tconx.fire_wall.description": "広範囲に1ダメージぐらい",
   "modifier.tconx.super_magnet.description": "アイテムを引き寄せる。",
