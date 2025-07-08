@@ -67,6 +67,6 @@ jobs:
         with:
           name: Release!
           tag_name: v1.0
-          files: build/libs/*.jar
+          files: build/libs/tconx-1.0.0.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
