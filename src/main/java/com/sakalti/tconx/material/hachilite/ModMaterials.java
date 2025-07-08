@@ -6,6 +6,7 @@ public class ModMaterials {
 
     public static final MaterialId HACHILITE_ID = new MaterialId("tconx:hachilite");
     public static final MaterialId KANILITE_ID = new MaterialId("tconx:kanilite");
+    public static final MaterialId MOMONGAITE_ID = new MaterialId("tconx:momongaite");
     public static final MaterialId HERDYEEN_ID = new MaterialId("tconx:herdyeen");
     public static final MaterialId OSTLUM_ID = new MaterialId("tconx:ostlum");
     public static final MaterialId IGNIZ_ID = new MaterialId("tconx:igniz");
