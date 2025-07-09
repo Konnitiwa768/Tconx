@@ -44,7 +44,12 @@ public class ModMetals {
     public static final RegistryObject<Block> IGNIZ_BLOCK = registerBlock("igniz_block", 13f);
     public static final RegistryObject<Item> IGNIZ_RAW = registerSimpleItem("igniz_raw");
     public static final RegistryObject<Item> IGNIZ_INGOT = registerSimpleItem("igniz_ingot");
-
+    
+    public static final RegistryObject<Block> CHIRITE_ORE = registerBlock("chirite_ore", 4f);
+    public static final RegistryObject<Block> CHIRITE_BLOCK = registerBlock("chirite_block", 16f);
+    public static final RegistryObject<Item> CHIRITE_RAW = registerSimpleItem("chirite_raw");
+    public static final RegistryObject<Item> CHIRITE_INGOT = registerSimpleItem("chirite_ingot");
+    
     public static final RegistryObject<Block> MOMONGAITE_ORE = registerBlock("momongaite_ore", 3f);
     public static final RegistryObject<Block> MOMONGAITE_BLOCK = registerBlock("momongaite_block", 11f);
     public static final RegistryObject<Item> MOMONGAITE_RAW = registerSimpleItem("momongaite_raw");
