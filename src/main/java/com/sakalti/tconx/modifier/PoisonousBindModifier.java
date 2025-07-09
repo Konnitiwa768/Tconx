@@ -16,7 +16,7 @@ public class PoisonousBindModifier extends Modifier {
         int durationTicks = 20 * 3 * fixedLevel;  // 3秒 × レベル3
         int amplifier = Math.max(0, fixedLevel - 1);  // 2（Potionレベル3相当）
 
-        MobEffectInstance slowness = new MobEffectInstance(MobEffects.POISON, durationTicks, amplifier);
-        target.addEffect(slowness);
+        MobEffectInstance poison = new MobEffectInstance(MobEffects.POISON, durationTicks, amplifier);
+        target.addEffect(poison);
     }
 }
