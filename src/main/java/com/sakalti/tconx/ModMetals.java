@@ -57,6 +57,9 @@ public class ModMetals {
 
     public static final RegistryObject<Block> HERDYEEN_BLOCK = registerBlock("herdyeen_block", 18f);
     public static final RegistryObject<Item> HERDYEEN_INGOT = registerSimpleItem("herdyeen_ingot");
+
+    public static final RegistryObject<Block> CHIISTEEL_BLOCK = registerBlock("chiisteel_block", 35f);
+    public static final RegistryObject<Item> CHIISTEEL_INGOT = registerSimpleItem("chiisteel_ingot");
     
     public static final RegistryObject<Block> IOXIUM_BLOCK = registerBlock("ioxium_block", 7f);
     public static final RegistryObject<Item> IOXIUM_INGOT = registerSimpleItem("ioxium_ingot");
