@@ -1,0 +1,18 @@
+{
+  "type": "tconstruct:alloy",
+  "inputs": [
+    {
+      "name": "tconstruct:molten_chirite",
+      "amount": 40
+    },
+    {
+      "name": "tconstruct:molten_iron",
+      "amount": 20
+    }
+  ],
+  "result": {
+    "fluid": "tconx:molten_chiisteel",
+    "amount": 15
+  },
+  "temperature": 1200
+}
