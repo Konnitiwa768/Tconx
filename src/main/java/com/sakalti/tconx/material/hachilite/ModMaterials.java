@@ -14,6 +14,7 @@ public class ModMaterials {
     public static final MaterialId IOXIUM_ID = new MaterialId("tconx:ioxium");
     public static final MaterialId DILONITE_ID = new MaterialId("tconx:dilonite");
     public static final MaterialId TIBERITE_ID = new MaterialId("tconx:tiberite");
+    public static final MaterialId CHIISTEEL_ID = new MaterialId("tconx:chiisteel");
     public static void registerMaterials() {
         // JSON側で登録するのでJavaはID宣言のみ
     }
