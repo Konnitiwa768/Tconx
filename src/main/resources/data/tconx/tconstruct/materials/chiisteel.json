@@ -1,0 +1,15 @@
+{
+  "craftable": true,
+  "tier": 5,
+  "sortOrder": 5,
+  "hidden": false,
+  "color": "#f8dac4",
+  "fluid": "tconx:molten_chiisteel",
+  "translationKey": "material.tconx.chirite"
+  "traits": [
+    {
+      "name": "tconx:weak_burn",
+      "level": 1
+    }
+  ]
+}
