@@ -17,6 +17,6 @@ public class WeakBurnModifier extends Modifier {
         int amplifier = Math.max(0, fixedLevel - 1);  // 2（Potionレベル3相当）
 
         MobEffectInstance weakness = new MobEffectInstance(MobEffects.WEAKNESS, durationTicks, amplifier);
-        target.addEffect(slowness);
+        target.addEffect(weakness);
     }
 }
