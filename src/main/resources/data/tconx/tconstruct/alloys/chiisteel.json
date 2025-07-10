@@ -3,16 +3,16 @@
   "inputs": [
     {
       "name": "tconstruct:molten_chirite",
-      "amount": 40
+      "amount": 540
     },
     {
       "name": "tconstruct:molten_iron",
-      "amount": 20
+      "amount": 40
     }
   ],
   "result": {
     "fluid": "tconx:molten_chiisteel",
-    "amount": 15
+    "amount": 30
   },
-  "temperature": 1200
+  "temperature": 1499
 }
