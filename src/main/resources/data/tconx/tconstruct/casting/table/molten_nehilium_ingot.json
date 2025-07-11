@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:casting_table",
+  "fluid": {
+    "name": "tconx:molten_nehilium",
+    "amount": 144
+  },
+  "result": "tconx:nehilium_ingot",
+  "cooling_time": 57
+}

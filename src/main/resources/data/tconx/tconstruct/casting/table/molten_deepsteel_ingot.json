@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:casting_table",
+  "fluid": {
+    "name": "tconx:molten_deepsteel",
+    "amount": 144
+  },
+  "result": "tconx:deepsteel_ingot",
+  "cooling_time": 57
+}

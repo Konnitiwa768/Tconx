@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:casting_table",
+  "fluid": {
+    "name": "tconx:molten_ostlum",
+    "amount": 144
+  },
+  "result": "tconx:ostlum_ingot",
+  "cooling_time": 57
+}
