@@ -1,0 +1,15 @@
+{
+  "craftable": true,
+  "tier": 5,
+  "sortOrder": 5,
+  "hidden": false,
+  "color": "#234156",
+  "fluid": "tconx:molten_deepsteel",
+  "translationKey": "material.tconx.deepsteel"
+  "traits": [
+    {
+      "name": "tconx:heavy_stone",
+      "level": 1
+    }
+  ]
+}
