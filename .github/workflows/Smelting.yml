@@ -1,0 +1,74 @@
+name: Generate Casting Recipes from Materials
+
+on:
+  push:
+    paths:
+      - 'src/main/resources/data/tconx/tconstruct/materials/*.json'
+  workflow_dispatch:
+
+jobs:
+  generate-casting:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Git Config
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Pull Latest
+        run: git pull --rebase
+
+      - name: Generate Casting Recipes (no EOF)
+        run: |
+          mkdir -p src/main/resources/data/tconx/tconstruct/casting/basin
+          mkdir -p src/main/resources/data/tconx/tconstruct/casting/table
+
+          for file in src/main/resources/data/tconx/tconstruct/materials/*.json; do
+            name=$(basename "$file" .json)
+            fluid_id="tconx:molten_${name}"
+            block_file="src/main/resources/data/tconx/tconstruct/casting/basin/molten_${name}_block.json"
+            ingot_file="src/main/resources/data/tconx/tconstruct/casting/table/molten_${name}_ingot.json"
+
+            echo "{" > "$block_file"
+            echo '  "type": "tconstruct:casting_basin",' >> "$block_file"
+            echo '  "fluid": {' >> "$block_file"
+            echo "    \"name\": \"${fluid_id}\"," >> "$block_file"
+            echo '    "amount": 1296' >> "$block_file"
+            echo '  },' >> "$block_file"
+            echo "  \"result\": \"tconx:${name}_block\"," >> "$block_file"
+            echo '  "cooling_time": 150' >> "$block_file"
+            echo "}" >> "$block_file"
+
+            echo "{" > "$ingot_file"
+            echo '  "type": "tconstruct:casting_table",' >> "$ingot_file"
+            echo '  "fluid": {' >> "$ingot_file"
+            echo "    \"name\": \"${fluid_id}\"," >> "$ingot_file"
+            echo '    "amount": 144' >> "$ingot_file"
+            echo '  },' >> "$ingot_file"
+            echo "  \"result\": \"tconx:${name}_ingot\"," >> "$ingot_file"
+            echo '  "cooling_time": 57' >> "$ingot_file"
+            echo "}" >> "$ingot_file"
+          done
+
+      - name: Detect Changes
+        id: detect_changes
+        run: |
+          git status --porcelain
+          if git status --porcelain | grep 'src/main/resources/data/tconx/tconstruct/casting/'; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and Push
+        if: steps.detect_changes.outputs.changed == 'true'
+        run: |
+          git add src/main/resources/data/tconx/tconstruct/casting/
+          git commit -m "auto: generate casting recipes (no-EOF)"
+          git push
