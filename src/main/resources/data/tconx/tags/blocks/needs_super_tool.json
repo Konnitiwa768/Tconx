@@ -2,6 +2,11 @@
   "replace": false,
   "values": [
     "tconx:igniz_ore",
-    "tconx:igniz_block"
+    "tconx:igniz_block",
+    "tconx:chirite_ore",
+    "tconx:chirite_block",
+    "tconx:chiisteel_block",
+    "tconx:dilonite_block",
+    "tconx:tiberite_block"
   ]
 }
