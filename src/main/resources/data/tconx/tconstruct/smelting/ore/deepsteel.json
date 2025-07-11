@@ -1,12 +1,12 @@
 {
   "type": "tconstruct:melting",
   "ingredient": {
-    "item": "yourmodname:deepchunk"
+    "item": "tconx:deepchunk"
   },
   "result": {
-    "fluid": "yourmodname:molten_deepsteel",
-    "amount": 144
+    "fluid": "tconx:molten_deepsteel",
+    "amount": 1
   },
-  "temperature": 800,
+  "temperature": 1200,
   "time": 200
 }
