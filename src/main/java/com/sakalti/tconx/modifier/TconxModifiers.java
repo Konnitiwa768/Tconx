@@ -1,6 +1,7 @@
 package com.sakalti.tconx.modifier;
 
 import com.sakalti.tconx.modifier.GlacialBindModifier;
+import com.sakalti.tconx.modifier.HeavyStoneModifier;
 import com.sakalti.tconx.modifier.LongsparkModifier;
 import com.sakalti.tconx.modifier.WeakBurnModifier;
 import com.sakalti.tconx.modifier.SuperMagnetModifier;
@@ -24,6 +25,7 @@ public class TconxModifiers {
     public static final Modifier LONG_SPARK = new LongsparkModifier();
     public static final Modifier LASER_PRISM = new LaserPrismModifier();
     public static final Modifier POISONOUS_BIND = new PoisonousBindModifier();
+    public static final Modifier HEAVY_STONE = new HeavyStoneModifier();
 
     public static void init() {
         // 何も登録しない、自前インスタンス保持のみ
