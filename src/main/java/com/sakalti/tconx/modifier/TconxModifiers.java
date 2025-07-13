@@ -1,6 +1,7 @@
 package com.sakalti.tconx.modifier;
 
 import com.sakalti.tconx.modifier.GlacialBindModifier;
+import com.sakalti.tconx.modifier.AuroVisionModifier;
 import com.sakalti.tconx.modifier.FieldyModifier;
 import com.sakalti.tconx.modifier.HeavyStoneModifier;
 import com.sakalti.tconx.modifier.LongsparkModifier;
