@@ -1,0 +1,15 @@
+{
+  "craftable": true,
+  "tier": 6,
+  "sortOrder": 6,
+  "hidden": false,
+  "color": "#593b67",
+  "fluid": "tconx:molten_proxia",
+  "translationKey": "material.tconx.proxia"
+  "traits": [
+    {
+      "name": "tconx:fieldy",
+      "level": 1
+    }
+  ]
+}
