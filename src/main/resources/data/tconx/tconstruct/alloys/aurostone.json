@@ -1,0 +1,22 @@
+{
+  "type": "tconstruct:alloy",
+  "inputs": [
+    {
+      "name": "tconstruct:molten_chiirite",
+      "amount": 100
+    },
+    {
+      "name": "tconstruct:molten_igniz",
+      "amount": 10
+    },
+    {
+      "name": "tconx:molten_emerald",
+      "amount": 100
+    }
+  ],
+  "result": {
+    "fluid": "tconx:molten_aurostone",
+    "amount": 50
+  },
+  "temperature": 1610
+}
