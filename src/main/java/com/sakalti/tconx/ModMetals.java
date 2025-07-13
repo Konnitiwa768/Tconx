@@ -61,6 +61,9 @@ public class ModMetals {
     public static final RegistryObject<Block> PROXIA_BLOCK = registerBlock("proxia_block", 4f);
     public static final RegistryObject<Item> PROXIA_INGOT = registerSimpleItem("proxia_ingot");
 
+    public static final RegistryObject<Block> AUROSTONE_BLOCK = registerBlock("aurostone_block", 25f);
+    public static final RegistryObject<Item> AUROSTONE_INGOT = registerSimpleItem("aurostone_ingot");
+
     public static final RegistryObject<Block> DEEPSTEEL_BLOCK = registerBlock("deepsteel_block", 58f);
     public static final RegistryObject<Item> DEEPSTEEL_INGOT = registerSimpleItem("deepsteel_ingot");
     public static final RegistryObject<Item> DEEPCHUNK = registerSimpleItem("deepchunk");
