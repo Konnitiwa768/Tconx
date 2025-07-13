@@ -29,6 +29,7 @@ public class TconxModifiers {
     public static final Modifier POISONOUS_BIND = new PoisonousBindModifier();
     public static final Modifier HEAVY_STONE = new HeavyStoneModifier();
     public static final Modifier FIELDY = new FieldyModifier();
+    public static final Modifier AURO_VISION = new AuroVisionModifier();
 
     public static void init() {
         // 何も登録しない、自前インスタンス保持のみ
