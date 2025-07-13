@@ -1,31 +1,27 @@
-name: Fix TConX Path
+name: Fix TConX Material Stat Paths
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'src/main/resources/data/tconstruct/materials/stats/*.json'
 
 jobs:
-  move-and-commit:
+  relocate:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Move momongaite.json to correct TConX path
+    - name: Move all material stat files to tconx path
       run: |
-        OLD_PATH="src/main/resources/data/tconstruct/materials/stats/*.json"
-        NEW_DIR="src/main/resources/data/tconx/tconstruct/materials/stats"
-        NEW_PATH="$NEW_DIR/*.json"
+        SRC_DIR="src/main/resources/data/tconstruct/materials/stats"
+        DEST_DIR="src/main/resources/data/tconx/tconstruct/materials/stats"
 
-        if [ -f "$OLD_PATH" ]; then
-          mkdir -p "$NEW_DIR"
-          mv "$OLD_PATH" "$NEW_PATH"
-          echo "Moved $OLD_PATH to $NEW_PATH"
+        if [ -d "$SRC_DIR" ]; then
+          mkdir -p "$DEST_DIR"
+          mv "$SRC_DIR"/* "$DEST_DIR"/
+          echo "Moved files from $SRC_DIR to $DEST_DIR"
         else
-          echo "$OLD_PATH does not exist. Skipping."
+          echo "No files found in $SRC_DIR"
         fi
 
     - name: Configure Git
@@ -33,9 +29,8 @@ jobs:
         git config user.name "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-    - name: Commit and push changes
+    - name: Commit and push
       run: |
-        git add src/main/resources/data/tconx/tconstruct/materials/stats/*.json
-        git rm src/main/resources/data/tconstruct/materials/stats/*.json || true
-        git commit -m "fix: move momongaite.json to correct TConX path" || echo "No changes to commit"
+        git add -A
+        git commit -m "fix: move TConX stat files to correct path" || echo "No changes to commit"
         git push
