@@ -1,0 +1,20 @@
+{
+  "type": "tconstruct:alloy",
+  "inputs": [
+    {
+      "name": "tconstruct:molten_cobalt",
+      "amount": 144
+    },
+    {
+      "name": "tconstruct:molten_chiirite",
+      "amount": 50
+
+    }
+  ],
+  "result": {
+    "fluid": "tconx:molten_proxia",
+    "amount": 50
+
+  },
+  "temperature": 1499
+}
