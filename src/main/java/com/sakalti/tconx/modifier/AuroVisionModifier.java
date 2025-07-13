@@ -5,17 +5,18 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
-import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
+import slimeknights.tconstruct.library.modifiers.modules.behavior.UpdateModifier;
 
-public class AuroVisionModifier extends Modifier {
+public class FieldyModifier extends Modifier implements UpdateModifier {
 
-    // 攻撃時の効果
+    // 攻撃時の効果（発光 + 耐性）
+    @Override
     public void afterEntityHit(ToolStack tool, int level, LivingEntity target, LivingEntity attacker, float damage, boolean isCritical) {
         if (attacker == null) return;
 
         int durationTicks = 20; // 1秒
 
-        // Glowing (amplifier 4 = Glowing V)
+        // Glowing V（amplifier=4）
         MobEffectInstance glow = new MobEffectInstance(MobEffects.GLOWING, durationTicks, 4);
         // Resistance V
         MobEffectInstance resistance = new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, durationTicks, 4);
@@ -24,11 +25,18 @@ public class AuroVisionModifier extends Modifier {
         attacker.addEffect(resistance);
     }
 
-    // 常時効果を与える
-    public void onUpdate(ToolStack tool, int level, LivingEntity entity, int slotType) {
-        if (!tool.isBroken() && ModifierUtil.isEquipped(tool, slotType)) {
-            // Night Vision I（効果1秒、毎tick更新）
-            MobEffectInstance nightVision = new MobEffectInstance(MobEffects.NIGHT_VISION, 220, 0, true, false);
+    // 毎tickごとに呼ばれる処理：暗視効果（AUROVISION）
+    @Override
+    public void applyLivingTick(ToolStack tool, int level, LivingEntity entity) {
+        if (!tool.isBroken()) {
+            // 220tickでチラつきを防ぐ（継続上書き）
+            MobEffectInstance nightVision = new MobEffectInstance(
+                MobEffects.NIGHT_VISION,
+                220,
+                0,
+                true,   // ambient
+                false   // showParticles
+            );
             entity.addEffect(nightVision);
         }
     }
