@@ -13,7 +13,7 @@ public class JumpyModifier extends Modifier {
     public void tick(ToolStack tool, int level, LivingEntity entity) {
         if (!tool.isBroken()) {
             MobEffectInstance jump = new MobEffectInstance(
-                MobEffects.JUMP_BOOST, // 正確な名前は JUMP_BOOST
+                MobEffects.JUMP, // 正確な名前は JUMP_BOOST
                 220,                   // 11秒。チラつき防止
                 level - 1,             // レベル補正（0から開始）
                 true,                  // ambient: HUDで薄く表示
