@@ -15,7 +15,7 @@ public class JumpyModifier extends Modifier {
         }
         // Jump Boost 効果を付与。amplifier は 0 が1段階目なので level-1。
         entity.addEffect(new MobEffectInstance(
-            MobEffects.JUMP_BOOST,
+            MobEffects.JUMP,
             220,
             Math.max(0, level - 1),
             true,   // ambient
