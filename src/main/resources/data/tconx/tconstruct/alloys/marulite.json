@@ -1,0 +1,22 @@
+{
+  "type": "tconstruct:alloy",
+  "inputs": [
+    {
+      "name": "tconstruct:molten_deepsteel",
+      "amount": 10
+    },
+    {
+      "name": "tconstruct:molten_igniz",
+      "amount": 40
+    },
+    {
+      "name": "tconx:molten_cobalt",
+      "amount": 100
+    }
+  ],
+  "result": {
+    "fluid": "tconx:molten_marulite",
+    "amount": 50
+  },
+  "temperature": 1260
+}
