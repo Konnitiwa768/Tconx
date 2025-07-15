@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:casting_table",
+  "fluid": {
+    "name": "tconx:molten_marulite",
+    "amount": 144
+  },
+  "result": "tconx:marulite_ingot",
+  "cooling_time": 57
+}
