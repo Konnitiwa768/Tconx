@@ -1,0 +1,15 @@
+{
+  "craftable": true,
+  "tier": 6,
+  "sortOrder": 6,
+  "hidden": false,
+  "color": "#dccdc2",
+  "fluid": "tconx:molten_marulite",
+  "translationKey": "material.tconx.marulite"
+  "traits": [
+    {
+      "name": "tconx:jumpy",
+      "level": 1
+    }
+  ]
+}
