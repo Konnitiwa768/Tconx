@@ -1,18 +1,6 @@
 package com.sakalti.tconx.modifier;
 
-import com.sakalti.tconx.modifier.GlacialBindModifier;
-import com.sakalti.tconx.modifier.AuroVisionModifier;
-import com.sakalti.tconx.modifier.FieldyModifier;
-import com.sakalti.tconx.modifier.HeavyStoneModifier;
-import com.sakalti.tconx.modifier.LongsparkModifier;
-import com.sakalti.tconx.modifier.WeakBurnModifier;
-import com.sakalti.tconx.modifier.SuperMagnetModifier;
-import com.sakalti.tconx.modifier.IceBindModifier;
-import com.sakalti.tconx.modifier.LightTouchModifier;
-import com.sakalti.tconx.modifier.FireWallModifier;
-import com.sakalti.tconx.modifier.LaserPrismModifier;
-import com.sakalti.tconx.modifier.PoisonousBindModifier;
-import com.sakalti.tconx.modifier.LifestealModifier;
+import com.sakalti.tconx.modifier.*;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 
 public class TconxModifiers {
@@ -28,6 +16,8 @@ public class TconxModifiers {
     public static final Modifier LASER_PRISM = new LaserPrismModifier();
     public static final Modifier POISONOUS_BIND = new PoisonousBindModifier();
     public static final Modifier HEAVY_STONE = new HeavyStoneModifier();
+    public static final Modifier JUMPY = new JumpyModifier();
+
     public static final Modifier FIELDY = new FieldyModifier();
     public static final Modifier AURO_VISION = new AuroVisionModifier();
 
