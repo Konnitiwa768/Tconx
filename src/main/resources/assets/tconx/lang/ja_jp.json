@@ -12,6 +12,7 @@
   "material.tconx.chirite": "チーライト",
   "material.tconx.chiisteel": "チーライト鋼",
   "material.tconx.aurostone": "オーロストーン",
+  "material.tconx.aurostone": "マルライト",
   "material.tconx.deepsteel": "深層鋼",
 
 
@@ -40,7 +41,8 @@
   "block.tconx.chirite_block": "チーライトブロック",
   "block.tconx.chiisteel_block": "チーライト鋼ブロック",
   "block.tconx.deepsteel_block": "深層鋼ブロック",
-  "block.tconx.aurostone_block": "オーロストーブロック",
+  "block.tconx.aurostone_block": "オーロストーンブロック",
+  "block.tconx.marulite_block": "マルライトブロック",
 
   "block.tconx.hachilite_ore": "ハチライト鉱石",
   "block.tconx.kanilite_ore": "カニライト鉱石",
@@ -62,6 +64,7 @@
   "fluid.tconx.molten_chirite": "溶融チーライト鋼",
   "fluid.tconx.molten_deepsteel": "溶融深層鋼",
   "fluid.tconx.molten_aurostone": "溶融オーロストーン",
+  "fluid.tconx.molten_marulite": "溶融マルライト",
 
   "modifier.tconx.glacial_bind": "氷縛",
   "modifier.tconx.auro_stone": "オーロラビジョン",
@@ -76,9 +79,11 @@
   "modifier.tconx.fire_wall": "炎の壁",
   "modifier.tconx.laser_prism": "レーザープリズム",
   "modifier.tconx.heavy_stone": "重い石",
+  "modifier.tconx.jumpy": "ジャンプ",
 
   "modifier.tconx.glacial_bind.description": "攻撃時、敵を鈍足状態にする。",
   "modifier.tconx.heavy_stone.description": "ほぼ動けない代わりに耐性3",
+  "modifier.tconx.jumpy.description": "ジャンプが強くなる",
   "modifier.tconx.auro_vision.description": "攻撃時、敵を発光状態にする。また自分は常時暗視",
   "modifier.tconx.fieldy.description": "攻撃すると少しだけ完全バリア",
   "modifier.tconx.weak_burn.description": "攻撃時、敵を弱体化状態にする。",
