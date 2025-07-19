@@ -1,0 +1,15 @@
+{
+  "name": "Molten Ouswari",
+  "temperature": 1300,
+  "fluid": {
+    "color": "#EE12BE",
+    "luminosity": 15,
+    "density": 9700,
+    "viscosity": 3800
+  },
+  "display": {
+    "color": "#EE12BE",
+    "translation_key": "fluid.tconx.molten_ouswari"
+  },
+  "tag": "tconstruct:molten_metals"
+}
