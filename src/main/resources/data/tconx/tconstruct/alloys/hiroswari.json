@@ -1,0 +1,19 @@
+{
+  "type": "tconstruct:alloy",
+  "inputs": [
+    {
+      "name": "tconstruct:molten_kanilite",
+      "amount": 100
+    },
+    {
+      "name": "tconx:molten_igniz",
+      "amount": 50
+    }
+  ],
+  "result": {
+    "fluid": "tconx:molten_hiroswari",
+    "amount": 40
+
+  },
+  "temperature": 1450
+}
