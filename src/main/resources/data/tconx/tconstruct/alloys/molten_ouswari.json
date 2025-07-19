@@ -1,0 +1,18 @@
+{
+  "type": "tconstruct:alloy",
+  "inputs": [
+    {
+      "name": "tconstruct:molten_kanilite",
+      "amount": 100
+    },
+    {
+      "name": "tconx:molten_ioxium",
+      "amount": 20
+    }
+  ],
+  "result": {
+    "fluid": "tconx:molten_ouswari",
+    "amount": 50
+  },
+  "temperature": 1550
+}
