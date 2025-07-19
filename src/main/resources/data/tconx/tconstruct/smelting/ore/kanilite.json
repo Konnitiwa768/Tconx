@@ -1,4 +1,4 @@
-{
+あ{
   "type": "tconstruct:melting",
   "ingredient": {
     "item": "tconx:raw_kanilite"
@@ -7,6 +7,6 @@
     "fluid": "tconx:molten_kanilite",
     "amount": 10
   },
-  "temperature": 1200,
+  "temperature": 1100,
   "time": 200
 }
