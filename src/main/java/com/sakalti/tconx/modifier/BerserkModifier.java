@@ -9,22 +9,20 @@ import java.util.Random;
 public class BerserkModifier extends Modifier {
     private static final Random RAND = new Random();
 
-    /**
-     * 攻撃時にツール側から呼び出すためのメソッド
-     * @param tool ツールのToolStack
-     * @param level Modifierレベル
-     * @param attacker 攻撃者
-     * @param baseDamage 元のダメージ
-     * @return 修正後のダメージ（効果が発動しなければ baseDamage）
-     */
     public float tryApplyBerserkEffect(ToolStack tool, int level, LivingEntity attacker, float baseDamage) {
         if (tool.isBroken() || attacker == null || level <= 0) return baseDamage;
 
         if (RAND.nextFloat() < 0.33f) {
-            // 耐久2消費に成功したら
-            if (tool.damage(2, attacker.level(), attacker)) {
-                return baseDamage * 3f;
+            int currentDamage = tool.getDamage();
+            int maxDamage = tool.getStats().getMaxDurability();
+
+            if (currentDamage + 2 >= maxDamage) {
+                // 壊れるため消費不可
+                return baseDamage;
             }
+
+            tool.setDamage(currentDamage + 2);
+            return baseDamage * 3f;
         }
         return baseDamage;
     }
