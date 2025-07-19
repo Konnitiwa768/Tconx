@@ -10,32 +10,31 @@ public class BerserkModifier extends Modifier {
     private static final Random RANDOM = new Random();
 
     /**
-     * 攻撃時に呼び出す想定のメソッド。
-     * @param tool ツールの ToolStack
+     * 攻撃後に呼び出す独自メソッド。
+     * 33%で耐久2消費し、ダメージ3倍を返す。
+     *
+     * @param tool ツールスタック
      * @param level Modifierレベル
-     * @param attacker 攻撃者
-     * @param baseDamage 元のダメージ
-     * @return 修正後のダメージ（33%の確率で耐久+2消費して3倍ダメージ）
+     * @param attacker 攻撃者エンティティ
+     * @param baseDamage 元の与ダメージ
+     * @return 修正後のダメージ
      */
-    public float tryApplyBerserkEffect(ToolStack tool, int level, LivingEntity attacker, float baseDamage) {
-        if (tool.isBroken() || attacker == null || level <= 0) {
-            return baseDamage;
-        }
+    public float AfterEntityHit(ToolStack tool, int level, LivingEntity attacker, float baseDamage) {
+        if (tool.isBroken() || attacker == null || level <= 0) return baseDamage;
 
         if (RANDOM.nextFloat() < 0.33f) {
             int currentDamage = tool.getDamage();
 
-            // 耐久超過で壊れる場合は発動させない
+            // 壊れるのを防ぐため単純に最大値はInt.MAX_VALUEで代用
             if (currentDamage + 2 >= Integer.MAX_VALUE) {
                 return baseDamage;
             }
 
-            // 耐久2消費
             tool.setDamage(currentDamage + 2);
 
-            // 3倍ダメージに変更して返す
             return baseDamage * 3f;
         }
+
         return baseDamage;
     }
 }
