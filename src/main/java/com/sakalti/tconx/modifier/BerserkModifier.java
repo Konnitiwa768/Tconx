@@ -1,28 +1,26 @@
 package com.sakalti.tconx.modifier;
 
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.damagesource.DamageSource;
 import slimeknights.tconstruct.library.modifiers.Modifier;
-import slimeknights.tconstruct.library.tools.nbt.ToolStack;
-import slimeknights.tconstruct.library.tools.context.AttackContext;
-
+import slimeknights.tconstruct.library.modifiers.hook.AfterLivingHitModifierHook;
+import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import java.util.Random;
 
-public class BerserkModifier extends Modifier {
-    private static final Random RAND = new Random();
+public class BerserkModifier extends Modifier implements AfterLivingHitModifierHook {
+  private static final Random RAND = new Random();
 
-    @Override
-    public float onAttack(AttackContext context, int level) {
-        LivingEntity attacker = context.getAttacker();
-        ToolStack tool = context.getTool();
+  @Override
+  public float afterLivingHit(IToolStackView tool, int level, LivingEntity hitter, LivingEntity target, float damageDealt, boolean isCritical, boolean isOffhand) {
+    if (hitter == null || target == null) return damageDealt;
 
-        if (attacker != null && tool != null && !tool.isBroken() && RAND.nextFloat() < 0.33f) {
-            // 耐久2を消費
-            if (tool.damage(2, attacker.level(), attacker)) {
-                // ダメージを3倍に設定して返す
-                return context.getBaseDamage() * 3f;
-            }
-        }
-        // 通常のダメージをそのまま返す
-        return context.getBaseDamage();
+    if (RAND.nextFloat() < 0.33f) {
+      // 耐久2追加消費
+      if (tool.damage(2, hitter, toolStack -> {})) {
+        // 与ダメージを3倍にして返す
+        return damageDealt * 3f;
+      }
     }
+    return damageDealt;
+  }
 }
