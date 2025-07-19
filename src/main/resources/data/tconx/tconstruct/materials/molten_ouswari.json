@@ -1,0 +1,15 @@
+{
+  "craftable": true,
+  "tier": 6,
+  "sortOrder": 6,
+  "hidden": false,
+  "color": "#ee12be",
+  "fluid": "tconx:molten_ouswari",
+  "translationKey": "material.tconx.ouswari"
+  "traits": [
+    {
+      "name": "tconx:unstable",
+      "level": 1
+    }
+  ]
+}
