@@ -10,7 +10,6 @@ import java.util.Random;
 public class BerserkModifier extends Modifier implements AfterLivingHitModifierHook {
   private static final Random RAND = new Random();
 
-  @Override
   public float afterLivingHit(IToolStackView tool, int level, LivingEntity hitter, LivingEntity target, float damageDealt, boolean isCritical, boolean isOffhand) {
     if (hitter == null || target == null) return damageDealt;
 
