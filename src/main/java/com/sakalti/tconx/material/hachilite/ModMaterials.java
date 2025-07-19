@@ -5,6 +5,7 @@ import slimeknights.tconstruct.library.materials.definition.MaterialId;
 public class ModMaterials {
 
     public static final MaterialId HACHILITE_ID = new MaterialId("tconx:hachilite");
+    public static final MaterialId OUSWARI_ID = new MaterialId("tconx:ouswari");
     public static final MaterialId HIROSWARI_ID = new MaterialId("tconx:hiroswari");
     public static final MaterialId PROXIA_ID = new MaterialId("tconx:proxia");
     public static final MaterialId CHIRITE_ID = new MaterialId("tconx:chirite");
