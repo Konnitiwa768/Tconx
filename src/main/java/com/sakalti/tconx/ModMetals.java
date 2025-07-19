@@ -66,6 +66,9 @@ public class ModMetals {
     public static final RegistryObject<Block> PROXIA_BLOCK = registerBlock("proxia_block", 4f);
     public static final RegistryObject<Item> PROXIA_INGOT = registerSimpleItem("proxia_ingot");
 
+    public static final RegistryObject<Block> OUSWARI_BLOCK = registerBlock("ouswari_block", 96f);
+    public static final RegistryObject<Item> OUSWARI_INGOT = registerSimpleItem("ouswari_ingot");
+
     public static final RegistryObject<Block> AUROSTONE_BLOCK = registerBlock("aurostone_block", 25f);
     public static final RegistryObject<Item> AUROSTONE_INGOT = registerSimpleItem("aurostone_ingot");
 
