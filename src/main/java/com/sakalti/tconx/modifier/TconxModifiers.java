@@ -18,6 +18,7 @@ public class TconxModifiers {
     public static final Modifier HEAVY_STONE = new HeavyStoneModifier();
     public static final Modifier JUMPY = new JumpyModifier();
     public static final Modifier BERSERK = new BerserkModifier();
+    public static final Modifier UNSTABLE = new UnstableModifier();
     public static final Modifier FIELDY = new FieldyModifier();
     public static final Modifier AURO_VISION = new AuroVisionModifier();
 
