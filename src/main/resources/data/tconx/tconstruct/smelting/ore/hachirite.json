@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "item": "tconx:hachirite_block"
+  },
+  "result": {
+    "fluid": "tconx:molten_hachirite",
+    "amount": 10
+  },
+  "temperature": 1200,
+  "time": 200
+}
