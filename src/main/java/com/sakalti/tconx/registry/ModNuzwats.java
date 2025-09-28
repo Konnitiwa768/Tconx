@@ -2,15 +2,19 @@ package com.tconx.registry;
 
 import com.tconx.items.NuzwatItem;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tiers;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.eventbus.api.IEventBus;
 
 public class ModNuzwats {
 
+    // DeferredRegister の作成
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "tconx");
 
+    // Nuzwat アイテム登録
     public static final RegistryObject<Item> WOODEN_NUZWAT = ITEMS.register("wooden_nuzwat",
         () -> new NuzwatItem(Tiers.WOOD, 1.9f, 3.5f, new Item.Properties().tab(CreativeModeTabs.COMBAT)));
 
@@ -28,4 +32,12 @@ public class ModNuzwats {
 
     public static final RegistryObject<Item> NETHERITE_NUZWAT = ITEMS.register("netherite_nuzwat",
         () -> new NuzwatItem(Tiers.NETHERITE, 2.3f, 6.3f, new Item.Properties().tab(CreativeModeTabs.COMBAT)));
+
+    /**
+     * メイン mod クラスから呼び出す登録関数
+     * @param eventBus Mod のイベントバス
+     */
+    public static void register(IEventBus eventBus) {
+        ITEMS.register(eventBus);
+    }
 }
