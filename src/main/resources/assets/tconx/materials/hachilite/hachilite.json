@@ -1,0 +1,8 @@
+{
+  "name": "hachilite",
+  "fluid": "tconx:molten_hachilite",
+  "color": 5227511,
+  "craftable": true,
+  "castable": true,
+  "hidden": false
+}

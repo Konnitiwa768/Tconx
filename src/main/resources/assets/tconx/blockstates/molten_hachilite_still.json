@@ -1,7 +1,5 @@
 {
   "variants": {
-    "": {
-      "model": "tconx:block/molten_hachilite_still"
-    }
+    "": { "model": "tconx:block/molten_hachilite_still" }
   }
 }
