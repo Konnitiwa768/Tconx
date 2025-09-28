@@ -1,4 +1,4 @@
-package com.tconx.items;
+package com.sakalti.tconx.items;
 
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.effect.MobEffectInstance;
