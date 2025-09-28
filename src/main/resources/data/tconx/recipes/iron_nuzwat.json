@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " A ",
+        " C ",
+        " B "
+    ],
+    "key": {
+        "A": {
+            "item": "minecraft:iron_ingot"
+        },
+        "B": {
+            "item": "minecraft:stick"
+        },
+        "C": {
+            "item": "minecraft:amethyst_shard"
+        }
+    },
+    "result": {
+        "item": "tconx:iron_nuzwat"
+    }
+}
