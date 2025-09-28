@@ -27,6 +27,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/main/java/com/tconx/items/NuzwatItem.java src/main/java/com/tconx/registry/ModNuzwats.java resources/data/tconx/recipes/
+          git add src/main/java/com/sakalti/tconx/items/NuzwatItem.java src/main/java/com/sakalti/tconx/registry/ModNuzwats.java src/main/resources/data/tconx/recipes/
           git commit -m "自動生成: Nuzwats全素材"
           git push
