@@ -1,38 +1,32 @@
-package com.sakalti.tconx.items;
+package com.sakalti.tconx.registry;
 
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tier;
+import com.sakalti.tconx.items.NuzwatItem;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LightBlock;
+import net.minecraft.world.item.Tiers;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.eventbus.api.IEventBus;
 
-public class NuzwatItem extends SwordItem {
+public class ModNuzwats {
 
-    public NuzwatItem(Tier tier, float attackDamage, float attackSpeed, Item.Properties properties) {
-        super(tier, (int) attackDamage, attackSpeed, properties);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "tconx");
+
+    public static final RegistryObject<Item> WOODEN_NUZWAT = ITEMS.register("wooden_nuzwat",
+            () -> new NuzwatItem(Tiers.WOOD, 1.9f, 3.5f, new Item.Properties().tab(CreativeModeTabs.COMBAT)));
+    public static final RegistryObject<Item> STONE_NUZWAT = ITEMS.register("stone_nuzwat",
+            () -> new NuzwatItem(Tiers.STONE, 2.0f, 4.2f, new Item.Properties().tab(CreativeModeTabs.COMBAT)));
+    public static final RegistryObject<Item> IRON_NUZWAT = ITEMS.register("iron_nuzwat",
+            () -> new NuzwatItem(Tiers.IRON, 2.1f, 4.9f, new Item.Properties().tab(CreativeModeTabs.COMBAT)));
+    public static final RegistryObject<Item> GOLDEN_NUZWAT = ITEMS.register("golden_nuzwat",
+            () -> new NuzwatItem(Tiers.GOLD, 2.7f, 3.5f, new Item.Properties().tab(CreativeModeTabs.COMBAT)));
+    public static final RegistryObject<Item> DIAMOND_NUZWAT = ITEMS.register("diamond_nuzwat",
+            () -> new NuzwatItem(Tiers.DIAMOND, 2.2f, 5.6f, new Item.Properties().tab(CreativeModeTabs.COMBAT)));
+    public static final RegistryObject<Item> NETHERITE_NUZWAT = ITEMS.register("netherite_nuzwat",
+            () -> new NuzwatItem(Tiers.NETHERITE, 2.3f, 6.3f, new Item.Properties().tab(CreativeModeTabs.COMBAT)));
+
+    public static void register(IEventBus bus) {
+        ITEMS.register(bus);
     }
-
-    @Override
-    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        // 攻撃時に発光効果
-        target.addEffect(new MobEffectInstance(MobEffects.GLOWING, 100, 0));
-        return super.hurtEnemy(stack, target, attacker);
-    }
-
-    @Override
-    public void inventoryTick(ItemStack stack, Level level, net.minecraft.world.entity.Entity entity, int slot, boolean selected) {
-        super.inventoryTick(stack, level, entity, slot, selected);
-        if (!level.isClientSide() && entity instanceof Player player && selected) {
-            BlockPos pos = player.blockPosition();
-            // プレイヤーの頭上に光源ブロックを置く（光度14）
-            level.setBlock(pos.above(), Blocks.LIGHT.defaultBlockState().setValue(LightBlock.LEVEL, 14), 3);
-        }
-    }
-}
+}  
