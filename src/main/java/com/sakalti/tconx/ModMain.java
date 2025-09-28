@@ -8,12 +8,14 @@ import com.sakalti.tconx.material.hachilite.ModMaterials;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import com.sakalti.tconx.modifier.GlacialBindModifier;
+import com.sakalti.tconx.registry.*;
 
 @Mod("tconx")
 public class ModMain {
     
     public ModMain() {
         TconxModifiers.init();
+        ModNuzwats.register(FMLJavaModLoadingContext.get().getModEventBus());
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         ModMaterials.registerMaterials();
         ModMetals.register(FMLJavaModLoadingContext.get().getModEventBus());
