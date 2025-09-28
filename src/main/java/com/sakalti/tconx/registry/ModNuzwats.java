@@ -1,7 +1,7 @@
 package com.tconx.registry;
 
 import com.tconx.items.NuzwatItem;
-import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.*;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
