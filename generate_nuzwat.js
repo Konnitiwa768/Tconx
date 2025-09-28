@@ -12,9 +12,9 @@ const materials = [
 ];
 
 // ディレクトリ設定
-const javaItemDir = path.join(__dirname, "src/main/java/com/tconx/items");
-const javaRegistryDir = path.join(__dirname, "src/main/java/com/tconx/registry");
-const recipeDir = path.join(__dirname, "resources/data/tconx/recipes");
+const javaItemDir = path.join(__dirname, "src/main/java/com/sakalti/tconx/items");
+const javaRegistryDir = path.join(__dirname, "src/main/java/com/sakalti/tconx/registry");
+const recipeDir = path.join(__dirname, "src/main/resources/data/tconx/recipes");
 
 // ディレクトリ作成
 fs.mkdirSync(javaItemDir, { recursive: true });
