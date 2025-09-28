@@ -1,0 +1,32 @@
+name: Generate Nuzwats
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate Nuzwats
+        run: node generate_nuzwats.js
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/main/java/com/tconx/items/NuzwatItem.java src/main/java/com/tconx/registry/ModNuzwats.java resources/data/tconx/recipes/
+          git commit -m "自動生成: Nuzwats全素材"
+          git push
