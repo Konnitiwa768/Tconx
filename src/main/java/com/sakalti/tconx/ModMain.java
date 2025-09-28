@@ -8,7 +8,7 @@ import com.sakalti.tconx.material.hachilite.ModMaterials;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import com.sakalti.tconx.modifier.GlacialBindModifier;
-import com.sakalti.tconx.registry.*;
+import com.sakalti.tconx.registry.ModNuzwats;
 
 @Mod("tconx")
 public class ModMain {
