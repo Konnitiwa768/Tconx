@@ -25,7 +25,6 @@ public class ModEnchantments {
         public NuzwatDamageEnchantment() {
             super(Rarity.UNCOMMON, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
         }
-        @Override
         public boolean canApply(ItemStack stack) {
             return stack.getItem() instanceof NuzwatItem;
         }
@@ -36,7 +35,6 @@ public class ModEnchantments {
         public NuzwatUndeadBaneEnchantment() {
             super(Rarity.UNCOMMON, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
         }
-        @Override
         public boolean canApply(ItemStack stack) {
             return stack.getItem() instanceof NuzwatItem;
         }
