@@ -10,8 +10,8 @@ import com.sakalti.tconx.enchant.ModEnchantments;
 public class ModMain {
 
     public ModMain() {
-        ModEnchantments.ENCHANTMENTS.register(bus); 
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        ModEnchantments.ENCHANTMENTS.register(bus); 
         ModMaterials.registerMaterials();
     }
 }
