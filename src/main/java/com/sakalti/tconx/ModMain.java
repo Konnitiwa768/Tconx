@@ -10,6 +10,7 @@ import com.sakalti.tconx.material.hachilite.ModStats;
 public class ModMain {
 
     public ModMain() {
+        ModEnchantments.ENCHANTMENTS.register(); 
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         ModMaterials.registerMaterials();
         ModStats.registerStats();
