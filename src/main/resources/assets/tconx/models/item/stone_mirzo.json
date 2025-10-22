@@ -1,0 +1,18 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "tconx:item/stone_mirzo"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [0, 180, 0],
+      "translation": [0, 4, -8],
+      "scale": [1.8, 1.8, 1.8]
+    },
+    "firstperson_righthand": {
+      "rotation": [0, 180, 0],
+      "translation": [0, 2, -3],
+      "scale": [1.6, 1.6, 1.6]
+    }
+  }
+}
