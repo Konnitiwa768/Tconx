@@ -28,4 +28,4 @@ public class ModNuzwats {
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
     }
-}}
+}
