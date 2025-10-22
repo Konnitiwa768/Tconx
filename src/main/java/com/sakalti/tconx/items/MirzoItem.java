@@ -36,12 +36,10 @@ public class MirzoItem extends Item {
         return tier;
     }
 
-    @Override
     public int getUseDuration(ItemStack stack) {
         return maxChargeTicks;
     }
 
-    @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         player.startUsingItem(hand);
@@ -51,7 +49,6 @@ public class MirzoItem extends Item {
         return InteractionResultHolder.consume(stack);
     }
 
-    @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity entity, int timeLeft) {
         if (!(entity instanceof Player player)) return;
 
@@ -91,18 +88,13 @@ public class MirzoItem extends Item {
         }
     }
 
-    @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.literal("§7長槍・突き専用"));
         tooltip.add(Component.literal("§bリーチ: 4m"));
         tooltip.add(Component.literal("§e左クリック: 通常突き / 右クリック長押し: セミオート突き"));
-        tooltip.add(Component.literal(String.format("§f攻撃力: %.1f / 攻撃速度: %.2f", baseDamage, attackSpeed)));
-        tooltip.add(Component.literal(String.format("§8チャージ時間: %.1f秒", maxChargeTicks/20.0)));
-        tooltip.add(Component.literal(String.format("§8耐久: %d", getMaxDamage(stack))));
         tooltip.add(Component.literal("§8Tier: " + tier.toString()));
     }
 
-    @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
         ResourceLocation enchKey = ForgeRegistries.ENCHANTMENTS.getKey(enchantment);
         if (enchKey != null) {
