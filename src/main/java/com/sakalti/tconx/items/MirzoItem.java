@@ -4,15 +4,17 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Enchantment;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.List;
 
@@ -99,5 +101,37 @@ public class MirzoItem extends Item {
         tooltip.add(Component.literal(String.format("§8チャージ時間: %.1f秒", maxChargeTicks/20.0)));
         tooltip.add(Component.literal(String.format("§8耐久: %d", getMaxDamage(stack))));
         tooltip.add(Component.literal("§8Tier: " + tier.toString()));
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        ResourceLocation enchKey = ForgeRegistries.ENCHANTMENTS.getKey(enchantment);
+        if (enchKey != null) {
+            String key = enchKey.toString();
+
+            // 剣専用攻撃系エンチャント
+            if (key.equals("minecraft:sharpness") ||
+                key.equals("minecraft:smite") ||
+                key.equals("minecraft:bane_of_arthropods") ||
+                key.equals("minecraft:knockback") ||
+                key.equals("minecraft:fire_aspect") ||
+                key.equals("minecraft:looting") ||
+                key.equals("minecraft:sweeping")) {
+                return true;
+            }
+
+            // 汎用ユーティリティ系
+            if (key.equals("minecraft:unbreaking") ||
+                key.equals("minecraft:mending") ||
+                key.equals("minecraft:vanishing_curse")) {
+                return true;
+            }
+
+            // 独自エンチャント
+            if (key.equals("tconx:nuzwat_damage") || key.equals("tconx:nuzwat_undead_bane")) {
+                return true;
+            }
+        }
+        return super.canApplyAtEnchantingTable(stack, enchantment);
     }
 }
