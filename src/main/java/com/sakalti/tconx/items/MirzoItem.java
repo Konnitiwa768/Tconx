@@ -4,24 +4,35 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
-import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
-public class MirzoSwordItem extends SwordItem {
+public class MirzoItem extends Item {
 
+    private final float baseDamage;
+    private final float attackSpeed;
     private final int maxChargeTicks;
+    private final Tier tier;
 
-    public MirzoSwordItem(Tier tier, int baseDamage, float attackSpeed, int maxChargeTicks, int durability) {
-        super(tier, baseDamage, attackSpeed, new Properties().stacksTo(1).durability(durability));
+    public MirzoItem(float baseDamage, float attackSpeed, int maxChargeTicks, int durability, Tier tier) {
+        super(new Item.Properties().stacksTo(1).durability(durability));
+        this.baseDamage = baseDamage;
+        this.attackSpeed = attackSpeed;
         this.maxChargeTicks = maxChargeTicks;
+        this.tier = tier;
+    }
+
+    public Tier getTier() {
+        return tier;
     }
 
     @Override
@@ -73,7 +84,6 @@ public class MirzoSwordItem extends SwordItem {
         }
 
         if (target != null) {
-            float baseDamage = this.getAttackDamage(); // SwordItem の baseDamage を取得
             float finalDamage = (float)(baseDamage * (0.6 + 0.4 * progress) * speedBonus);
             target.hurt(level.damageSources().playerAttack(player), finalDamage);
             stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(p.getUsedItemHand()));
@@ -85,13 +95,9 @@ public class MirzoSwordItem extends SwordItem {
         tooltip.add(Component.literal("§7長槍・突き専用"));
         tooltip.add(Component.literal("§bリーチ: 4m"));
         tooltip.add(Component.literal("§e左クリック: 通常突き / 右クリック長押し: セミオート突き"));
-        tooltip.add(Component.literal(String.format("§f攻撃力: %.1f / 攻撃速度: %.2f", this.getAttackDamage(), this.getAttackSpeed())));
+        tooltip.add(Component.literal(String.format("§f攻撃力: %.1f / 攻撃速度: %.2f", baseDamage, attackSpeed)));
         tooltip.add(Component.literal(String.format("§8チャージ時間: %.1f秒", maxChargeTicks/20.0)));
-        tooltip.add(Component.literal(String.format("§8耐久: %d", stack.getMaxDamage())));
-        tooltip.add(Component.literal("§8Tier: " + this.getTier().toString()));
-    }
-
-    public Tier getTier() {
-        return this.getTier();
+        tooltip.add(Component.literal(String.format("§8耐久: %d", getMaxDamage(stack))));
+        tooltip.add(Component.literal("§8Tier: " + tier.toString()));
     }
 }
