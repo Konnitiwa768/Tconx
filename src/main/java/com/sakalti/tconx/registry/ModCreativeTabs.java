@@ -2,15 +2,15 @@ package com.sakalti.tconx.registry;
 
 import com.sakalti.tconx.registry.ModMirzo;
 import com.sakalti.tconx.registry.ModNuzwats;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import java.util.List;
 
 public class ModCreativeTabs {
 
     public static final CreativeModeTab ORIGINAL_WEAPONS = CreativeModeTab.builder()
-            .title("Original Weapons") // タブ名
-            .icon(() -> new ItemStack(ModMirzo.DIAMOND_MIRZO.get())) // アイコン
+            .title(Component.literal("Original Weapons")) // Component.literalで文字列をComponentに変換
+            .icon(() -> new ItemStack(ModMirzo.DIAMOND_MIRZO.get()))
             .displayItems((displayParams, items) -> {
                 // Mirzo 6種類
                 items.add(new ItemStack(ModMirzo.WOODEN_MIRZO.get()));
