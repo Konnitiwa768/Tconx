@@ -21,8 +21,11 @@ public class MirzoItem extends Item {
     private final float attackSpeed;
     private final int maxChargeTicks;
 
-    public MirzoItem(float baseDamage, float attackSpeed, int maxChargeTicks) {
-        super(new Item.Properties().stacksTo(1).tab(CreativeModeTab.TAB_COMBAT));
+    public MirzoItem(float baseDamage, float attackSpeed, int maxChargeTicks, int durability) {
+        super(new Item.Properties()
+                .stacksTo(1)
+                .durability(durability)
+                .tab(CreativeModeTab.TAB_COMBAT));
         this.baseDamage = baseDamage;
         this.attackSpeed = attackSpeed;
         this.maxChargeTicks = maxChargeTicks;
@@ -81,6 +84,9 @@ public class MirzoItem extends Item {
         if (target != null) {
             float finalDamage = (float)(baseDamage * (0.6 + 0.4 * progress) * speedBonus);
             target.hurt(level.damageSources().playerAttack(player), finalDamage);
+
+            // 耐久を減らす
+            stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(p.getUsedItemHand()));
         }
     }
 
@@ -91,5 +97,6 @@ public class MirzoItem extends Item {
         tooltip.add(Component.literal("§e左クリック: 通常突き / 右クリック長押し: セミオート突き"));
         tooltip.add(Component.literal(String.format("§f攻撃力: %.1f / 攻撃速度: %.2f", baseDamage, attackSpeed)));
         tooltip.add(Component.literal(String.format("§8チャージ時間: %.1f秒", maxChargeTicks/20.0)));
+        tooltip.add(Component.literal(String.format("§8耐久: %d", getMaxDamage(stack))));
     }
 }
