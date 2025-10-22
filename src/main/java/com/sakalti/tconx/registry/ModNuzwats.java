@@ -1,37 +1,31 @@
 package com.sakalti.tconx.registry;
 
-import com.sakalti.tconx.registry.ModMirzo;
-import com.sakalti.tconx.registry.ModNuzwats;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.core.NonNullList;
+import com.sakalti.tconx.items.NuzwatItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tiers;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.eventbus.api.IEventBus;
 
-public class ModCreativeTabs {
+public class ModNuzwats {
 
-    public static final CreativeModeTab ORIGINAL_WEAPONS = CreativeModeTab.builder()
-            .title(Component.literal("Original Weapons"))
-            .icon(() -> new ItemStack(ModMirzo.DIAMOND_MIRZO.get()))
-            .displayItems((displayParams, items) -> {
-                NonNullList<ItemStack> list = NonNullList.create();
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "tconx");
 
-                // Mirzo 6種類
-                list.add(new ItemStack(ModMirzo.WOODEN_MIRZO.get()));
-                list.add(new ItemStack(ModMirzo.STONE_MIRZO.get()));
-                list.add(new ItemStack(ModMirzo.IRON_MIRZO.get()));
-                list.add(new ItemStack(ModMirzo.GOLDEN_MIRZO.get()));
-                list.add(new ItemStack(ModMirzo.DIAMOND_MIRZO.get()));
-                list.add(new ItemStack(ModMirzo.NETHERITE_MIRZO.get()));
+    public static final RegistryObject<Item> WOODEN_NUZWAT = ITEMS.register("wooden_nuzwat",
+            () -> new NuzwatItem(Tiers.WOOD, 1.9f, 3.5f, new Item.Properties()));
+    public static final RegistryObject<Item> STONE_NUZWAT = ITEMS.register("stone_nuzwat",
+            () -> new NuzwatItem(Tiers.STONE, 2.0f, 4.2f, new Item.Properties()));
+    public static final RegistryObject<Item> IRON_NUZWAT = ITEMS.register("iron_nuzwat",
+            () -> new NuzwatItem(Tiers.IRON, 2.1f, 4.9f, new Item.Properties()));
+    public static final RegistryObject<Item> GOLDEN_NUZWAT = ITEMS.register("golden_nuzwat",
+            () -> new NuzwatItem(Tiers.GOLD, 2.7f, 3.5f, new Item.Properties()));
+    public static final RegistryObject<Item> DIAMOND_NUZWAT = ITEMS.register("diamond_nuzwat",
+            () -> new NuzwatItem(Tiers.DIAMOND, 2.2f, 5.6f, new Item.Properties()));
+    public static final RegistryObject<Item> NETHERITE_NUZWAT = ITEMS.register("netherite_nuzwat",
+            () -> new NuzwatItem(Tiers.NETHERITE, 2.3f, 6.3f, new Item.Properties()));
 
-                // Nuzwat 6種類
-                list.add(new ItemStack(ModNuzwats.WOODEN_NUZWAT.get()));
-                list.add(new ItemStack(ModNuzwats.STONE_NUZWAT.get()));
-                list.add(new ItemStack(ModNuzwats.IRON_NUZWAT.get()));
-                list.add(new ItemStack(ModNuzwats.GOLDEN_NUZWAT.get()));
-                list.add(new ItemStack(ModNuzwats.DIAMOND_NUZWAT.get()));
-                list.add(new ItemStack(ModNuzwats.NETHERITE_NUZWAT.get()));
-
-                items.addAll(list); // ← こうしてまとめて追加
-            })
-            .build();
-}
+    public static void register(IEventBus bus) {
+        ITEMS.register(bus);
+    }
+}}
