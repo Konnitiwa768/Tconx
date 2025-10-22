@@ -18,12 +18,12 @@ public class ModCreativeTabs {
             items.add(new ItemStack(ModMirzo.NETHERITE_MIRZO.get()));
 
             // Nuzwat 6種類
-            items.add(new ItemStack(ModMirzo.WOODEN_NUZWAT.get()));
-            items.add(new ItemStack(ModMirzo.STONE_NUZWAT.get()));
-            items.add(new ItemStack(ModMirzo.IRON_NUZWAT.get()));
-            items.add(new ItemStack(ModMirzo.GOLDEN_NUZWAT.get()));
-            items.add(new ItemStack(ModMirzo.DIAMOND_NUZWAT.get()));
-            items.add(new ItemStack(ModMirzo.NETHERITE_NUZWAT.get()));
+            items.add(new ItemStack(ModNuzwats.WOODEN_NUZWAT.get()));
+            items.add(new ItemStack(ModNuzwats.STONE_NUZWAT.get()));
+            items.add(new ItemStack(ModNuzwats.IRON_NUZWAT.get()));
+            items.add(new ItemStack(ModNuzwats.GOLDEN_NUZWAT.get()));
+            items.add(new ItemStack(ModNuzwats.DIAMOND_NUZWAT.get()));
+            items.add(new ItemStack(ModNuzwats.NETHERITE_NUZWAT.get()));
         }
     };
 }
