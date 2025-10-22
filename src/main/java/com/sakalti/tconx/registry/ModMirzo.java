@@ -1,7 +1,7 @@
 package com.sakalti.tconx.registry;
 
 import com.sakalti.tconx.Tconx;
-import com.sakalti.tconx.item.MirzoItem;
+import com.sakalti.tconx.items.MirzoItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
