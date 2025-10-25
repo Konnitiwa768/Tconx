@@ -1,6 +1,6 @@
 package com.sakalti.tconx.items;
 
-import com.sakalti.tconx.registry.ModEnchantments;
+import com.sakalti.tconx.enchant.ModEnchantments;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
