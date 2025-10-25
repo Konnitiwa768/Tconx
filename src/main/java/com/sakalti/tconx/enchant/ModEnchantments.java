@@ -1,7 +1,8 @@
 package com.sakalti.tconx.enchant;
 
 import net.minecraft.world.item.ItemStack;
-import com.sakalti.tconx.enchant.*;
+import com.sakalti.tconx.enchant.PierceThrustEnchantment;
+import com.sakalti.tconx.enchant.HemorrhageEnchantment;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.entity.EquipmentSlot;
